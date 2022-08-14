@@ -4,11 +4,6 @@ from .database import db
 from .settings import Config
 
 
-def import_models() -> None:
-    # import models here for flask migrate to work
-    pass
-
-
 def register_extensions(app: Flask) -> None:
     """Register Flask extensions."""
     for extension in extensions:
@@ -45,11 +40,6 @@ def register_shell_context(app: Flask) -> None:
     pass
 
 
-def register_commands(app: Flask) -> None:
-    from src.commands import fill_db
-    app.cli.add_command(fill_db)
-
-
 def configure_logger(app: Flask) -> None:
     pass
 
@@ -69,7 +59,6 @@ def create_app() -> Flask:
     register_blueprints(app)
     register_error_handlers(app)
     register_shell_context(app)
-    register_commands(app)
     configure_logger(app)
 
     return app

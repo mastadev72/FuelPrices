@@ -17,6 +17,22 @@ services:
       - app-data:/app
     entrypoint: ["gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "manage:application"]
 
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: images/Dockerfile
+    restart: always
+    env_file:
+      - api/src/.env
+    ports:
+      - "5001:5001"
+    #    depends_on:
+    #      - postgres
+    volumes:
+      - api-data:/api
+    entrypoint: [ "gunicorn", "-w", "4", "--bind", "0.0.0.0:5001", "manage:application" ]
+
 #  postgres:
 #    container_name: postgres
 #    image: postgres:14.4-alpine
@@ -31,7 +47,9 @@ services:
 #      - postgres-data:/var/lib/postgresql/data/
 
 volumes:
-#  postgres-data:
-#    name: postgres-data
   app-data:
     name: app-data
+  api-data:
+    name: api-data
+#  postgres-data:
+#    name: postgres-data
