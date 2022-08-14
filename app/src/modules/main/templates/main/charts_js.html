@@ -1,0 +1,351 @@
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    let chart_height = 320
+
+	let gulf_chart_options = {
+        series: [
+            {% for name, prices in gulf_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "gulf_prices",
+                    },
+                    svg: {
+                      filename: "gulf_prices",
+                    },
+                    png: {
+                      filename: "gulf_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Gulf',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
+
+    let wissol_chart_options = {
+        series: [
+            {% for name, prices in wissol_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "gulf_prices",
+                    },
+                    svg: {
+                      filename: "gulf_prices",
+                    },
+                    png: {
+                      filename: "gulf_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Wissol',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
+
+    let rompetrol_chart_options = {
+        series: [
+            {% for name, prices in rompetrol_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "gulf_prices",
+                    },
+                    svg: {
+                      filename: "gulf_prices",
+                    },
+                    png: {
+                      filename: "gulf_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Rompetrol',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
+
+    let socar_chart_options = {
+        series: [
+            {% for name, prices in socar_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "gulf_prices",
+                    },
+                    svg: {
+                      filename: "gulf_prices",
+                    },
+                    png: {
+                      filename: "gulf_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Socar',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
+
+    let lukoil_chart_options = {
+        series: [
+            {% for name, prices in lukoil_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "gulf_prices",
+                    },
+                    svg: {
+                      filename: "gulf_prices",
+                    },
+                    png: {
+                      filename: "gulf_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Lukoil',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
+
+
+    let gulf_chart = new ApexCharts(document.getElementById("gulf-chart"), gulf_chart_options);
+    let wissol_chart = new ApexCharts(document.getElementById("rompetrol-chart"), wissol_chart_options);
+    let rompetrol_chart = new ApexCharts(document.getElementById("wissol-chart"), rompetrol_chart_options);
+    let socar_chart = new ApexCharts(document.getElementById("socar-chart"), socar_chart_options);
+    let lukoil_chart = new ApexCharts(document.getElementById("lukoil-chart"), lukoil_chart_options);
+    gulf_chart.render();
+    wissol_chart.render();
+    rompetrol_chart.render();
+    socar_chart.render();
+    lukoil_chart.render();
+</script>
