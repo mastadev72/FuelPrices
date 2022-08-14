@@ -1,8 +1,8 @@
 # Everything needed in production
 
 # Flask
-Flask==2.2.1
-Werkzeug==2.2.1
+Flask==2.1.2
+Werkzeug==2.1.2
 click>=7.0
 
 # Database
@@ -29,6 +29,9 @@ Flask-DebugToolbar==0.13.1
 
 # Environment variable parsing
 environs==9.5.0
+
+# Flask Rest X
+flask-restx==0.5.1
 
 # Mail
 Flask-Mail==0.9.1
