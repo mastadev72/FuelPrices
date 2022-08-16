@@ -34,3 +34,6 @@ class Config(object):
 
     # Cache
     CACHE_TYPE = "simple"  # Can be "memcached", "redis", etc.
+
+    # API
+    JSON_SORT_KEYS = False

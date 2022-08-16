@@ -1,15 +1,12 @@
 from flask import Flask
 
-from flask_restx import Api
-
-from .extensions import extensions, extensions_with_db, api
+from .extensions import extensions, extensions_with_db
 from .database import db
 from .settings import Config
 
 
 def import_models() -> None:
-    # import models here for flask migrate to work
-    pass
+    from src.modules.main.models import FuelPriceModel
 
 
 def register_extensions(app: Flask) -> None:
@@ -40,21 +37,6 @@ def register_blueprints(app: Flask) -> None:
             app.register_blueprint(blueprint)
 
 
-def register_resourses(api: Api) -> None:
-    """
-    Method to register list of blueprints to the app
-
-    :param api: Api Core
-    :return: None
-    """
-
-    # To check if app contains blueprints we need to be inside the app context
-    from .utils import resources
-
-    for resource, resource_url in resources.items():
-        api.add_resource(resource, resource_url)
-
-
 def register_error_handlers(app: Flask) -> None:
     pass
 
@@ -83,9 +65,11 @@ def create_app() -> Flask:
     app.config.from_object(Config)
     app.config["DEBUG"] = True
 
+    from src.modules.api.api import api
+
+
     register_extensions(app)
     register_blueprints(app)
-    register_resourses(api)
     register_error_handlers(app)
     register_shell_context(app)
     register_commands(app)
