@@ -344,7 +344,7 @@ footer ul {
 }
 
 .provider_stats {
-	width: calc(100% - 325px);
+	width: calc(100% - 330px);
 	min-height: 340px;
 	padding: 10px;
 	border-radius: 5px;
@@ -369,5 +369,79 @@ footer ul {
 .chart svg {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+
+
+/*========Responsive=========*/
+@media (max-width: 1028px) {
+	.container {
+		width: 95%;
+		max-width: 95%;
+	}
+
+	.provider_tab {
+		gap: 15px;
+	}
+
+	.price_obj {
+		font-size: 13px;
+	}
+
+	.provider_prices {
+		width: 300px;
+	}
+
+	.provider_stats {
+		width: calc(100% - 315px);
+	}
+}
+
+@media (max-width: 780px) {
+	.provider_tab {
+		flex-direction: column;
+		gap: 25px;
+		margin: 20px 0;
+	}
+
+	.provider_prices {
+		width: 100%;
+		margin: 0;
+		min-height: 240px;
+	}
+
+	.price_obj {
+		font-size: 14px;
+	}
+
+	.provider_stats {
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@media (max-width: 600px) {
+	.container {
+		width: 98%;
+		max-width: 98%;
+	}
+
+	main {
+    	padding: 20px 10px;
+	}
+
+	footer {
+		height: 100%;
+		font-size: 12px;
+	}
+
+	footer ul {
+		flex-direction: column;
+		gap: 5px;
+		margin-left: 15px;
+	}
+
+	footer img {
+		display: none;
+	}
 }
 

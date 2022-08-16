@@ -30,8 +30,10 @@ Flask-DebugToolbar==0.13.1
 # Environment variable parsing
 environs==9.5.0
 
-# Flask Rest X
+# API stuff
 flask-restx==0.5.1
+flask-marshmallow==0.14.0
+marshmallow-sqlalchemy==0.28.1
 
 # Mail
 Flask-Mail==0.9.1

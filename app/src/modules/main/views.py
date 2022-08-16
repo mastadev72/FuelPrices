@@ -14,7 +14,7 @@ main_blueprint = Blueprint(
 @main_blueprint.app_context_processor
 def inject_today_prices():
 	return dict(
-		prices=FuelPriceModel.read_current_prices()
+		prices=FuelPriceModel.read_current_prices(order='type_alt')
 	)
 
 

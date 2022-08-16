@@ -16,13 +16,13 @@ class FuelPriceModel(PkModel):
 	change_rate = Column(db.Float)
 
 	@classmethod
-	def read_current_prices(cls, provider=None):
+	def read_current_prices(cls, provider=None, order='id'):
 		if provider is None:
-			current_prices = cls.query.filter_by(date=datetime.utcnow().date()).order_by("type_alt")
+			current_prices = cls.query.filter_by(date=datetime.utcnow().date()).order_by(order)
 		else:
 			current_prices = cls.query.filter_by(
 					date=datetime.utcnow().date(), provider=provider
-				).order_by("name")
+				).order_by(order)
 
 		if current_prices.count() == 0:
 			current_prices = cls.read_previous_prices(provider)  # Assign previous prices if no data yet
@@ -30,13 +30,13 @@ class FuelPriceModel(PkModel):
 		return current_prices
 
 	@classmethod
-	def read_previous_prices(cls, provider=None):
+	def read_previous_prices(cls, provider=None, order='id'):
 		if provider is None:
-			previous_prices = cls.query.filter_by(date=datetime.utcnow().date() - timedelta(days=1)).order_by("type_alt")
+			previous_prices = cls.query.filter_by(date=datetime.utcnow().date() - timedelta(days=1)).order_by(order)
 		else:
 			previous_prices = cls.query.filter_by(
 					date=datetime.utcnow().date() - timedelta(days=1), provider=provider
-				).order_by("name")
+				).order_by(order)
 
 		return previous_prices
 
