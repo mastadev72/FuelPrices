@@ -90,21 +90,6 @@ header img {
 	width: auto;
 }
 
-header a {
-	font-weight: 700;
-	font-size: 16px;
-
-}
-
-
-header a:first-child {
-	margin-right: 10px;
-}
-
-header a:last-child {
-	font-family: "Rubik", sans-serif;
-}
-
 /*=========subheader=========*/
 
 .running_cards {
@@ -421,8 +406,8 @@ footer ul {
 
 @media (max-width: 600px) {
 	.container {
-		width: 98%;
-		max-width: 98%;
+		width: 96%;
+		max-width: 96%;
 	}
 
 	main {
@@ -431,17 +416,22 @@ footer ul {
 
 	footer {
 		height: 100%;
-		font-size: 12px;
+		flex-direction: column-reverse;
 	}
 
 	footer ul {
-		flex-direction: column;
-		gap: 5px;
-		margin-left: 15px;
+		gap: 15px;
+		margin-bottom: 15px;
 	}
 
 	footer img {
 		display: none;
+	}
+}
+
+@media (max-width: 370px) {
+	.price_obj {
+		font-size: 12px;
 	}
 }
 
