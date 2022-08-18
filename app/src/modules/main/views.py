@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 
+from src.modules.main.forms import ComparePriceForm
 from src.modules.main.models import FuelPriceModel
-from src.modules.main.services import get_main_data, get_chart_data
+from src.modules.main.services import get_main_data, get_chart_data, get_compared_data
 
 
 main_blueprint = Blueprint(
@@ -18,11 +19,25 @@ def inject_today_prices():
 	)
 
 
-@main_blueprint.route('/')
+@main_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-	data = get_main_data()
+	tab_data = get_main_data()
 	chart_data = get_chart_data()
-	return render_template('index.html', **data, **chart_data)
+	compare_data = None
+
+	compare_form = ComparePriceForm()
+
+	if compare_form.validate_on_submit():
+		compare_data = get_compared_data(compare_form.type_alt.data)
+		return render_template(
+			'index.html',
+			compare_form=compare_form,
+			compare_data=compare_data,
+			**tab_data,
+			**chart_data
+		)
+
+	return render_template('index.html', compare_form=compare_form, compare_data=compare_data, **tab_data, **chart_data)
 
 
 @main_blueprint.route('/about')

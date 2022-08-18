@@ -25,7 +25,7 @@ class FuelPriceModel(PkModel):
 				).order_by(order)
 
 		if current_prices.count() == 0:
-			current_prices = cls.read_previous_prices(provider)  # Assign previous prices if no data yet
+			current_prices = cls.read_previous_prices(provider, order=order)  # Assign previous prices if no data yet
 
 		return current_prices
 

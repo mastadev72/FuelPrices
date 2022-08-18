@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    let compare_options = {
+        series: [{
+            name: "ფასი",
+            data: [{% for compare_obj in compare_data %}{{ compare_obj.price }}, {% endfor %}]
+        }],
+        chart: {
+            type: 'bar',
+            height: 240,
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: false,
+                },
+            },
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            }
+        },
+        xaxis: {
+            categories: [
+                {% for compare_obj in compare_data %}
+                    "{{ compare_obj.provider }}",
+                {% endfor %}
+            ]
+        },
+    };
+
+    let compare_chart = new ApexCharts(document.getElementById("compare-chart"), compare_options);
+    compare_chart.render();
+</script>

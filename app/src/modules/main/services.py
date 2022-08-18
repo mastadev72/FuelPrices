@@ -5,12 +5,12 @@ from .models import FuelPriceModel
 
 def get_main_data() -> dict:
 	"""
-	Calculates and returns data for index.html
+	Calculates and returns data for provider tabs
 
 	:return: dict with data for index.html
 	"""
 
-	data = {
+	tab_data = {
 		'gulf_prices': FuelPriceModel.read_current_prices('Gulf'),
 		'wissol_prices': FuelPriceModel.read_current_prices('Wissol'),
 		'rompetrol_prices': FuelPriceModel.read_current_prices('Rompetrol'),
@@ -18,7 +18,7 @@ def get_main_data() -> dict:
 		'lukoil_prices': FuelPriceModel.read_current_prices('Lukoil')
 	}
 
-	return data
+	return tab_data
 
 
 def get_chart_date_list() -> list:
@@ -96,3 +96,13 @@ def get_chart_data() -> dict:
 	}
 
 	return data
+
+
+def get_compared_data(type_alt: str) -> list:
+	"""
+	Returns all prices for certain fuel type
+
+	:param type_alt: Fuel type
+	:return: List of fuel price data for fuel type
+	"""
+	return FuelPriceModel.read_current_prices(order='price').filter_by(type_alt=type_alt)

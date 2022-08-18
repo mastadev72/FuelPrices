@@ -13,6 +13,13 @@ psycopg2-binary==2.9.3
 # Migrations
 Flask-Migrate==3.1.0
 
+# Forms
+Flask-WTF==1.0.1
+WTForms==3.0.1
+
+# Admin
+Flask-Admin==1.6.0
+
 # Deployment
 gevent==21.12.0
 gunicorn>=19.9.0

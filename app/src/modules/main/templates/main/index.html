@@ -144,5 +144,27 @@
         </div>
     </div>
 
+    <div class="compare">
+        <div class="compare_header">
+            <h3>შედარება</h3>
+            <form method="POST">
+                {{ compare_form.hidden_tag() }}
+                <label for="CompareFormSelect">{{ compare_form.type_alt.label }}</label>
+                {{ compare_form.type_alt(class_="form-control", id="CompareFormSelect") }}
+                <button class="" type="submit">შედარება</button>
+            </form>
+        </div>
+
+        <div class="compare_body">
+            {% if compare_data %}
+                <div class="chart" id="compare-chart"></div>
+                {% include 'horizontal_chart_js.html' %}
+            {% else %}
+                <img src="{{ url_for('static', filename='img/gauge.png') }}" alt="Fuel provider logo">
+                <h6>აირჩიეთ საწვავის ტიპი</h6>
+            {% endif %}
+        </div>
+    </div>
+
     {% include 'charts_js.html' %}
 {% endblock %}
