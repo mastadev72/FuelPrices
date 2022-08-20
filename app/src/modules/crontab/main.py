@@ -29,7 +29,7 @@ def notify_about_issue(developer_message: str, exc: Optional[Exception] = None) 
 	print(developer_message)
 
 
-def get_fuel_type(fuel_name: str) -> str | None:
+def get_fuel_type(fuel_name: str) -> Optional[str]:
 	"""
 	Identifies fuel type
 
@@ -54,7 +54,7 @@ def get_fuel_type(fuel_name: str) -> str | None:
 	return None
 
 
-def parsed_data_confirmation(name: str, price: str, provider: str) -> True | False:
+def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
 	"""
 	Confirms that parsed data is valid
 
