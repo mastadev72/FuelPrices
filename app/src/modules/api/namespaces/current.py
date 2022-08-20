@@ -16,12 +16,12 @@ class Current(Resource):
 
 @api.route("/<string:provider>")
 @api.response(404, 'Provider not found')
-@api.doc(params={'provider': 'Provider name (Gulf, Wissol, Rompetrol, Socar, Lukoil)'})
+@api.doc(params={'provider': 'Provider name (gulf, wissol, rompetrol, socar, lukoil)'})
 class Current(Resource):
     def get(self, provider):
         from src.modules.api.schemas import FuelPriceSchema
 
-        if provider.capitalize() not in ['Gulf', 'Wissol', 'Rompetrol', 'Socar', 'Lukoil']:
+        if provider.lower() not in ['gulf', 'wissol', 'rompetrol', 'socar', 'lukoil']:
             return 'Provider not found', 404
 
         fuel_objects = FuelPriceModel.read_current_prices(provider=provider.capitalize())
