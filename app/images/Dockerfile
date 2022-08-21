@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.10.5-alpine
+FROM python:3.9.13-alpine
 
 MAINTAINER Nikoloz Naskidashvili <nikoloz2005@gmail.com>
 
