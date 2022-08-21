@@ -1,14 +1,17 @@
 API_URLS = [
-		# All current prices
-		'/api/current/',
+	# Base URL
+	'/api/',
 
-		# Provider specific requests
-		'/api/current/gulf',
-		'/api/current/wissol',
-		'/api/current/rompetrol',
-		'/api/current/socar',
-		'/api/current/lukoil'
-	]
+	# All current prices
+	'/api/current/',
+
+	# Provider specific requests
+	'/api/current/gulf',
+	'/api/current/wissol',
+	'/api/current/rompetrol',
+	'/api/current/socar',
+	'/api/current/lukoil'
+]
 
 
 def test_urls(client):
