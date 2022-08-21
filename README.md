@@ -70,7 +70,8 @@ monitor, compare fuel prices, and use API to access current prices
     sudo bash ./scripts/linux/run.sh
     ```
 
-7. Enjoy 💫
+7. Go to http://127.0.0.1:5000/
+8. Enjoy 💫
 
 ### 👨🏼‍🔬 Contributing
 
