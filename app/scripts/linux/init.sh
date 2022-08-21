@@ -1,4 +1,4 @@
-$env:FLASK_APP = "manage"
+export FLASK_APP=manage
 pip install -r requirements.txt
 flask db init
 flask db migrate

@@ -64,10 +64,10 @@ monitor, compare fuel prices, and use API to access current prices
     # Linux
     cd app
    
-    ./scripts/linux/init.sh
-    ./scripts/linux/migrate.sh
-    ./scripts/linux/fill_db.sh
-    ./scripts/linux/run.sh
+    sudo bash ./scripts/linux/init.sh
+    sudo bash ./scripts/linux/migrate.sh
+    sudo bash ./scripts/linux/fill_db.sh
+    sudo bash ./scripts/linux/run.sh
     ```
 
 7. Enjoy 💫
