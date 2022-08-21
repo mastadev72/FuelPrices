@@ -88,4 +88,4 @@ simply open an issue with the tag "enhancement". Don't forget to give the projec
 
 ### 👨🏽‍💻 Contributor
 
-- @NickNaskida
+- Nikoloz Naskidashvili [@NickNaskida](https://github.com/NickNaskida)
