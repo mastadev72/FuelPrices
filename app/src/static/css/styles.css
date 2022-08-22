@@ -382,6 +382,23 @@ footer ul {
     width: 100px;
 }
 
+/*=======About=========*/
+.about_info a {
+    color: #0b84ed;
+}
+
+.about_info a:hover {
+    color: #0b84ed;
+}
+
+.accordion a {
+    color: #0b84ed;
+}
+
+.accordion a:hover {
+    color: #0b84ed;
+}
+
 /*========Error pages========*/
 .wrapper_404 {
     display: flex;
