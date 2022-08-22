@@ -8,7 +8,7 @@
 FuelPrices is an Open Source project that allows people to monitor Georgia's fuel prices. With this web app people can
 monitor, compare fuel prices, and use API to access current prices
 
-### Docs
+### 📋 Docs
 
 1. Clone the repository
 
