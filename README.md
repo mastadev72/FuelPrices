@@ -35,6 +35,7 @@ monitor, compare fuel prices, and use API to access current prices
    
    
    # Linux
+   
    # Install virtualenv
    pip install virtualenv
    
@@ -54,6 +55,7 @@ monitor, compare fuel prices, and use API to access current prices
 6. Run powershell commands in app/scripts/windows to start local development server
     ```
     # Windows
+   
     cd app
    
    ./scripts/windows/init.ps1
@@ -61,7 +63,9 @@ monitor, compare fuel prices, and use API to access current prices
    ./scripts/windows/fill_db.ps1
    ./scripts/windows/run.ps1
    
+   
     # Linux
+   
     cd app
    
     sudo bash ./scripts/linux/init.sh
