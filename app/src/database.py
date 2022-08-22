@@ -71,13 +71,18 @@ class CRUDMixin(object):
         return
 
 
-class Model(CRUDMixin, db.Model):
+class Model(CRUDMixin, db.Model):  # type: ignore
     """Base model class that includes CRUD convenience methods."""
 
     __abstract__ = True
 
     @classmethod
-    def load_all(cls):
+    def load_all(cls) -> list:
+        """
+        Load all table data.
+
+        :return: all table data
+        """
         return cls.query.all()
 
 
@@ -85,6 +90,7 @@ class PkModel(Model):
     """Base model class that includes CRUD convenience methods, plus adds a 'primary key' column named ``id``."""
 
     __abstract__ = True
+
     id = Column(db.Integer, primary_key=True)
 
     @classmethod
@@ -96,10 +102,10 @@ class PkModel(Model):
         :return: Pkmodel | None
         """
         if any(
-            (
-                isinstance(record_id, basestring) and record_id.isdigit(),
-                isinstance(record_id, (int, float)),
-            )
+                (
+                        isinstance(record_id, basestring) and record_id.isdigit(),  # noqa: E126
+                        isinstance(record_id, (int, float)),
+                )
         ):
             return cls.query.get(int(record_id))
         return None

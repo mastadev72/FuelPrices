@@ -12,4 +12,6 @@ FUEL_TYPES = (
 
 
 class ComparePriceForm(FlaskForm):
+    """index.html price comparison form."""
+
     type_alt = SelectField('საწვავის ტიპი', choices=FUEL_TYPES)

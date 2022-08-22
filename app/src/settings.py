@@ -12,6 +12,8 @@ env.read_env()
 
 
 class Config(object):
+    """Config class for flask application."""
+
     # Flask
     ENV = env.str("FLASK_ENV", default="production")
     DEBUG = ENV == "development"

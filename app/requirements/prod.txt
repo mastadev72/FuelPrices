@@ -47,6 +47,7 @@ Flask-Mail==0.9.1
 
 # Parsing stuff
 requests==2.28.1
+types-requests==2.28.9
 beautifulsoup4==4.11.1
 
 
