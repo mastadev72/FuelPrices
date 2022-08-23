@@ -1,0 +1,14 @@
+{% macro change_rate_badge(change_rate) %}
+<span
+  class="badge"
+  style="background-color: {% if change_rate > 0 %}#ea3943{% elif change_rate <= 0 %}#16c784{% endif %}"
+>
+    {% if change_rate > 0 %}
+        <i class="fa-solid fa-arrow-up"></i> {{ '%0.2f'|format(change_rate) }} &#8382;
+    {% elif change_rate < 0 %}
+        <i class="fa-solid fa-arrow-down"></i> {{ '%0.2f'|format(change_rate) }} &#8382;
+    {% else %}
+        0.00
+    {% endif %}
+</span>
+{% endmacro %}

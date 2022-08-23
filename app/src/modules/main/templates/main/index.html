@@ -1,0 +1,170 @@
+{% extends "base.html"%}
+{% from "index_macros.html" import change_rate_badge %}
+
+{% block title %}
+    მთავარი
+{% endblock %}
+
+{% block content_title %}
+    მთავარი
+{% endblock %}
+
+{% block content %}
+    <nav class="provider_nav">
+        <button class="provider_menu_butt provider_menu_butt_active" data-tab="0">
+            <img src="{{ url_for('static', filename='img/gulf_logo.png') }}" alt="Gulf logo"> Gulf
+        </button>
+        <button class="provider_menu_butt" data-tab="1">
+            <img src="{{ url_for('static', filename='img/wissol_logo.png') }}" alt="Wissol logo"> Wissol
+        </button>
+        <button class="provider_menu_butt" data-tab="2">
+            <img src="{{ url_for('static', filename='img/rompetrol_logo.png') }}" alt="Rompetrol logo"> Rompetrol
+        </button>
+        <button class="provider_menu_butt" data-tab="3">
+            <img src="{{ url_for('static', filename='img/socar_logo.png') }}" alt="Socar logo"> Socar
+        </button>
+        <button class="provider_menu_butt" data-tab="4">
+            <img src="{{ url_for('static', filename='img/lukoil_logo.png') }}" alt="Lukoil logo"> Lukoil
+        </button>
+    </nav>
+
+    <div class="provider_tab provider_tab_active">
+        <div class="provider_prices">
+            <div class="provider_prices_header">
+                <div>
+                    {{ card_logo_img("Gulf") }}
+                </div>
+                <div class="provider_prices_info">
+                    <h4>Gulf</h4>
+                    <hr>
+                    {{ gulf_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                </div>
+            </div>
+            {% for price_obj in gulf_prices %}
+                <div class="price_obj">
+                    <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                    <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="provider_stats">
+            <div class="chart" id="gulf-chart"></div>
+        </div>
+    </div>
+    <div class="provider_tab">
+        <div class="provider_prices">
+            <div class="provider_prices_header">
+                <div>
+                    {{ card_logo_img("Wissol") }}
+                </div>
+                <div class="provider_prices_info">
+                    <h4>Wissol</h4>
+                    <hr>
+                    {{ wissol_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                </div>
+            </div>
+            {% for price_obj in wissol_prices %}
+                <div class="price_obj">
+                    <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                    <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="provider_stats">
+            <div class="chart" id="rompetrol-chart"></div>
+        </div>
+    </div>
+    <div class="provider_tab">
+        <div class="provider_prices">
+            <div class="provider_prices_header">
+                <div>
+                    {{ card_logo_img("Rompetrol") }}
+                </div>
+                <div class="provider_prices_info">
+                    <h4>Rompetrol</h4>
+                    <hr>
+                    {{ rompetrol_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                </div>
+            </div>
+            {% for price_obj in rompetrol_prices %}
+                <div class="price_obj">
+                    <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                    <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="provider_stats">
+            <div class="chart" id="wissol-chart"></div>
+        </div>
+    </div>
+    <div class="provider_tab">
+        <div class="provider_prices">
+            <div class="provider_prices_header">
+                <div>
+                    {{ card_logo_img("Socar") }}
+                </div>
+                <div class="provider_prices_info">
+                    <h4>Socar</h4>
+                    <hr>
+                    {{ socar_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                </div>
+            </div>
+            {% for price_obj in socar_prices %}
+                <div class="price_obj">
+                    <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                    <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="provider_stats">
+            <div class="chart" id="socar-chart"></div>
+        </div>
+    </div>
+    <div class="provider_tab">
+        <div class="provider_prices">
+            <div class="provider_prices_header">
+                <div>
+                    {{ card_logo_img("Lukoil") }}
+                </div>
+                <div class="provider_prices_info">
+                    <h4>Lukoil</h4>
+                    <hr>
+                    {{ lukoil_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                </div>
+            </div>
+            {% for price_obj in lukoil_prices %}
+                <div class="price_obj">
+                    <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                    <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="provider_stats">
+            <div class="chart" id="lukoil-chart"></div>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="compare_header">
+            <h3>შედარება</h3>
+            <form method="POST">
+                {{ compare_form.hidden_tag() }}
+                <label for="CompareFormSelect">{{ compare_form.type_alt.label }}</label>
+                {{ compare_form.type_alt(class_="form-control", id="CompareFormSelect") }}
+                <button class="" type="submit">შედარება</button>
+            </form>
+        </div>
+
+        <div class="compare_body">
+            {% if compare_data %}
+                <div class="chart" id="compare-chart"></div>
+                {% include 'horizontal_chart_js.html' %}
+            {% else %}
+                <img src="{{ url_for('static', filename='img/gauge.png') }}" alt="Fuel provider logo">
+                <h6>აირჩიეთ საწვავის ტიპი</h6>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'charts_js.html' %}
+{% endblock %}
