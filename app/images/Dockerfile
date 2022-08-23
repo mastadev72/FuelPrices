@@ -19,7 +19,6 @@ ENV GROUP_ID=1000 \
 # install dependencies
 RUN python -m pip install -U --force-reinstall pip
 RUN apk update \
-    && apk upgrade -y --no-cache \
     && apk add postgresql-dev gcc python3-dev musl-dev vim \
 #    && apk add --virtual build-deps build-base gcc musl-dev jpeg-dev zlib-dev && \
 #    && apk add postgresql-dev \

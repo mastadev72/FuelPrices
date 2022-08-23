@@ -87,9 +87,12 @@ simply open an issue with the tag "enhancement". Don't forget to give the projec
 
 1. Fork the project
 2. Create your feature branch (git checkout -b <branch_name>)
-3. Commit your changes (git commit -m "some cool stuff added")
+3. Commit your changes (git commit -m "feat(new_feature): add feature")
 4. Push to the branch (git push origin <branch_name>)
 5. Open a pull request
+
+Please use semantic commit
+messages: [Semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 ### 👨🏽‍💻 Contributor
 
