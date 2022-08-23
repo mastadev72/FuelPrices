@@ -11,7 +11,7 @@ class Current(Resource):
 
     def get(self):
         """
-        Get request method for API endpoint.
+        Get all current prices.
 
         :return: json with all current prices data
         """
@@ -29,7 +29,7 @@ class ProviderCurrent(Resource):
 
     def get(self, provider):
         """
-        Get request method for API ProviderCurrent endpoint.
+        Get all provider prices.
 
         :param provider: fuel provider name
         :return: json with provider current prices data
