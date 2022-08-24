@@ -2,9 +2,9 @@ name: tox CI
 
 on:
   push:
-    branches: [ "master", "development" ]
+    branches: [ "development" ]
   pull_request:
-    branches: [ "master", "development" ]
+    branches: [ "master" ]
 
 defaults:
   run:

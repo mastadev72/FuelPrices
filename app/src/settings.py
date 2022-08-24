@@ -39,3 +39,8 @@ class Config(object):
 
     # API
     JSON_SORT_KEYS = False
+
+    @staticmethod
+    def get_mail_credentials():
+        """Get mail credentials for Flask-Mail."""
+        return Config.MAIL_USERNAME, Config.MAIL_PASSWORD
