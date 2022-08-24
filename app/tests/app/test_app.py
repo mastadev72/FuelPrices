@@ -16,3 +16,9 @@ def test_price_comparison(client):
     })
 
     assert response.status_code == 200
+
+
+def test_404(client):
+    response = client.get('/404')  # /404 dummy url
+
+    assert response.status_code == 404
