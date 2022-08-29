@@ -35,7 +35,7 @@ class Config(object):
     MAIL_USE_SSL = True
 
     # Cache
-    CACHE_TYPE = "simple"  # Can be "memcached", "redis", etc.
+    CACHE_TYPE = "simple"
 
     # API
     JSON_SORT_KEYS = False
