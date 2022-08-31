@@ -400,7 +400,7 @@ footer ul {
 }
 
 /*========Error pages========*/
-.wrapper_404 {
+.exc_wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -409,7 +409,7 @@ footer ul {
     min-height: 400px;
 }
 
-.wrapper_404 h1 {
+.exc_wrapper h1 {
     font-family: "Rubik", sans-serif;
     font-size: 100px;
 }

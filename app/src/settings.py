@@ -40,7 +40,20 @@ class Config(object):
     # API
     JSON_SORT_KEYS = False
 
+    # Slack logger
+    SLACK_WEBHOOK_KEY = env.str("SLACK_WEBHOOK_KEY")
+
     @staticmethod
-    def get_mail_credentials():
+    def get_debug_status() -> bool:
+        """Get DEBUG status."""
+        return Config.DEBUG
+
+    @staticmethod
+    def get_slack_webhook_key() -> str:
+        """Get slack webhook key."""
+        return Config.SLACK_WEBHOOK_KEY
+
+    @staticmethod
+    def get_mail_credentials() -> tuple:
         """Get mail credentials for Flask-Mail."""
         return Config.MAIL_USERNAME, Config.MAIL_PASSWORD

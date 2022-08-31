@@ -1,4 +1,6 @@
-from flask import Flask
+from logging.config import dictConfig
+
+from flask import Flask, render_template
 
 from .database import db
 from .settings import Config
@@ -39,9 +41,16 @@ def register_blueprints(app: Flask) -> None:
 
 def register_error_handlers(app: Flask) -> None:
     """Register error handlers here."""
-    from src.errors import page_not_found
 
-    app.register_error_handler(404, page_not_found)
+    @app.errorhandler(404)
+    def page_not_found(*args, **kwargs):
+        """404 error handler."""
+        return render_template("404.html"), 404
+
+    @app.errorhandler(500)
+    def server_error(*args, **kwargs):
+        """500 error handler."""
+        return render_template("500.html"), 500
 
 
 def register_shell_context(app: Flask) -> None:
@@ -55,9 +64,67 @@ def register_commands(app: Flask) -> None:
     app.cli.add_command(fill_db)
 
 
-def configure_logger(app: Flask) -> None:
+def configure_logger() -> None:
     """Configure logger here."""
-    pass
+    debug = Config.get_debug_status()
+
+    dictConfig({
+        "version": 1,
+        "disable_existing_loggers": True,
+        "formatters": {
+            "default": {
+                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+            },
+            "access": {
+                "format": "%(message)s",
+            }
+        },
+        "handlers": {
+            "console": {
+                "level": "INFO",
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+                "stream": "ext://sys.stdout",
+            },
+            "slack": {
+                "class": "src.error_handlers.HTTPSlackHandler",
+                "formatter": "default",
+                "level": "ERROR",
+            },
+            "error_file": {
+                "class": "logging.handlers.RotatingFileHandler",
+                "formatter": "default",
+                "filename": "/var/log/gunicorn.error.log",
+                "maxBytes": 10000,
+                "backupCount": 3,
+                "delay": "True",
+            },
+            "access_file": {
+                "class": "logging.handlers.RotatingFileHandler",
+                "formatter": "access",
+                "filename": "/var/log/gunicorn.access.log",
+                "maxBytes": 10000,
+                "backupCount": 3,
+                "delay": "True",
+            }
+        },
+        "loggers": {
+            "gunicorn.error": {
+                "handlers": ["console"] if debug else ["console", "slack", "error_file"],
+                "level": "INFO",
+                "propagate": False,
+            },
+            "gunicorn.access": {
+                "handlers": ["console"] if debug else ["console", "access_file"],
+                "level": "INFO",
+                "propagate": False,
+            }
+        },
+        "root": {
+            "level": "DEBUG" if debug else "INFO",
+            "handlers": ["console"] if debug else ["console", "slack"],
+        }
+    })
 
 
 def create_app() -> Flask:
@@ -66,15 +133,15 @@ def create_app() -> Flask:
 
     :return: Flask application
     """
+    configure_logger()
+
     app = Flask(__name__)
     app.config.from_object(Config)
-    app.config["DEBUG"] = True
 
     register_extensions(app)
     register_blueprints(app)
     register_error_handlers(app)
     register_shell_context(app)
     register_commands(app)
-    configure_logger(app)
 
     return app

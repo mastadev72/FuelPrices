@@ -1,3 +1,4 @@
+from src.app import create_app
 from src.extensions import db
 
 from .gulf_parser import parse_gulf_data
@@ -15,6 +16,8 @@ def parse_data() -> None:
     :return: None
     """
     # TODO: Refactor this
+
+    app = create_app()
 
     gulf_prices = {}
     rompetrol_prices = {}
@@ -61,3 +64,6 @@ def parse_data() -> None:
             fill_db_with_parsed_data(name, price, 'Socar')
 
         db.session.commit()
+        app.logger.info("Successfully parsed price data")
+    else:
+        app.logger.critical("Fail during price data parsing ")
