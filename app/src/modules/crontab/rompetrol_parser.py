@@ -1,4 +1,3 @@
-# flake8: noqa
 import requests
 from pprint import pprint
 
@@ -11,15 +10,20 @@ HEADERS = {
 }
 
 
-def parse_rompetrol_data():
+def parse_rompetrol_data() -> dict:
+    """
+    Parse Rompetrol fuel prices.
+
+    :return: dict with Rompetrol fuel prices
+    """
     response = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     items = soup.find_all('tr')[1:]
 
     data = {}
 
-    for i in items:
-        data.update({i.find_all('td')[0].get_text(strip=True): i.find_all('td')[1].get_text(strip=True)})
+    for item in items:
+        data.update({item.find_all('td')[0].get_text(strip=True): item.find_all('td')[1].get_text(strip=True)})
 
     return data
 

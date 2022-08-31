@@ -1,4 +1,3 @@
-# flake8: noqa
 import requests
 from pprint import pprint
 
@@ -11,17 +10,25 @@ HEADERS = {
 }
 
 
-def parse_gulf_data():
+def parse_gulf_data() -> dict:
+    """
+    Parse Gulf fuel prices.
+
+    :return: dict with Gulf fuel prices
+    """
     response = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     items = soup.find_all('div', class_='price_entry')
 
     data = {}
 
-    for i in items:
-        data.update({i.find('div', class_='product_name').get_text(strip=True): i.find('div',
-                                                                                       class_='product_price').get_text(
-            strip=True)})
+    for item in items:
+        data.update(
+            {
+                item.find('div', class_='product_name').get_text(strip=True):
+                    item.find('div', class_='product_price').get_text(strip=True)
+            }
+        )
 
     data.pop("გაზი")
 

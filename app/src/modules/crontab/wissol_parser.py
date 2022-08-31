@@ -1,6 +1,6 @@
-# flake8: noqa
-import requests
 import json
+
+import requests
 from pprint import pprint
 
 URL = 'https://api.wissol.ge/FuelPrice'
@@ -10,14 +10,19 @@ HEADERS = {
 }
 
 
-def parse_wissol_data():
+def parse_wissol_data() -> dict:
+    """
+    Parse Wissol fuel prices.
+
+    :return: dict with Wissol fuel prices
+    """
     response = requests.get(URL, headers=HEADERS).text
     items = json.loads(response)
 
     data = {}
 
-    for i in items:
-        data.update({i['fuelType']: i['price']})
+    for item in items:
+        data.update({item['fuelType']: item['price']})
 
     data.pop('ვისოლ გაზი')
 
