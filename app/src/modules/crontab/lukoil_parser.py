@@ -1,4 +1,3 @@
-# flake8: noqa
 import requests
 from pprint import pprint
 
@@ -11,7 +10,12 @@ HEADERS = {
 }
 
 
-def parse_lukoil_data():
+def parse_lukoil_data() -> dict:
+    """
+    Parse Lukoil fuel prices.
+
+    :return: dict with Lukoil fuel prices
+    """
     response = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     items = soup.find_all('div',
@@ -21,8 +25,8 @@ def parse_lukoil_data():
     data_values = []
     data_keys = ["სუპერ ეკტო", "პრემიუმ ავანგარდი", "ევრო რეგულარი", "ევრო დიზელი"]
 
-    for i in items[0:]:
-        data_values.append(i.find_all('p')[0].get_text(strip=True))
+    for item in items[0:]:
+        data_values.append(item.find_all('p')[0].get_text(strip=True))
 
     for name, price in zip(data_keys, data_values[1:]):
         data[name] = price

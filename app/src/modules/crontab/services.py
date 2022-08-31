@@ -1,28 +1,8 @@
+import logging
 from typing import Optional
 from datetime import datetime, timedelta
 
-from flask_mail import Message
-
-from src.settings import Config
-from src.extensions import mail
 from src.modules.main.models import FuelPriceModel
-
-MAIL_USERNAME, _ = Config.get_mail_credentials()
-
-
-def notify_about_issue(developer_message: str, exc: Optional[Exception] = None) -> None:
-    """
-    Notifies admin about data collection error through email.
-
-    :param developer_message: issue related message for developer
-    :param exc: raised exception, default value is None
-    :return: None
-    """
-    msg = Message(developer_message, sender=MAIL_USERNAME, recipients=[MAIL_USERNAME])
-    msg.body = f"""{developer_message} \n\n {exc}"""
-    mail.send(msg)
-
-    print(developer_message)
 
 
 def get_fuel_type(fuel_name: str) -> Optional[str]:
@@ -58,6 +38,8 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     :param provider: fuel provider
     :return: True / False
     """
+    app_logger = logging.getLogger('app')
+
     # Name check
     names_list = [
         'დიზელ ენერჯი', 'ევრო დიზელი', 'ევრო რეგულარი', 'G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი',
@@ -67,21 +49,22 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     ]
 
     if name not in names_list or name == "":
-        notify_about_issue(f'{provider} fuel name check failed')
+        app_logger.critical(f"{provider} fuel name check failed")
         return False
 
     # Price check
     try:
         float(price)
     except Exception as exc:  # noqa: B902
-        notify_about_issue(f'{provider} fuel price check failed', exc)
+        app_logger.critical(f"{provider} fuel price check failed, exception: {exc}")
         return False
 
     # Fuel type check
     if get_fuel_type(name) is None:
-        notify_about_issue(f'{provider} fuel type not found')
+        app_logger.critical(f"{provider} fuel type not found")
         return False
 
+    app_logger.info(f"{provider}, {name}, {price} - parsing confirm.")
     return True
 
 

@@ -1,4 +1,3 @@
-# flake8: noqa
 import requests
 from pprint import pprint
 
@@ -11,7 +10,12 @@ HEADERS = {
 }
 
 
-def parse_socar_data():
+def parse_socar_data() -> dict:
+    """
+    Parse Socar fuel prices.
+
+    :return: dict with Socar fuel prices
+    """
     response = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     title_items = soup.find_all('th')[1:]
@@ -22,8 +26,8 @@ def parse_socar_data():
     title_items[3].string.replace_with("ევრო რეგულარი")
     title_items[5].string.replace_with("ევრო დიზელი")
 
-    for i, j in zip(title_items, price_items):
-        data.update({i.get_text(strip=True): j.get_text(strip=True)})
+    for title, price in zip(title_items, price_items):
+        data.update({title.get_text(strip=True): price.get_text(strip=True)})
 
     data.pop("CNG ბუნებრივი აირი")
     data.pop("ნანო რეგულარი")

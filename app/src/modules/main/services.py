@@ -1,6 +1,20 @@
 from datetime import datetime, timedelta
 
+from flask import request
+
 from .models import FuelPriceModel
+
+
+def compare_form_submitted() -> bool:
+    """
+    Check if compare form was submitted.
+
+    :return: True / False
+    """
+    if request.method == 'GET':
+        return False
+
+    return True
 
 
 def get_tab_data() -> dict:

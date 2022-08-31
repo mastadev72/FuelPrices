@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template
 
+from src.extensions import cache
 from src.modules.main.forms import ComparePriceForm
 from src.modules.main.models import FuelPriceModel
-from src.modules.main.services import get_tab_data, get_tab_chart_data, get_fuel_prices_by_type
+from src.modules.main.services import compare_form_submitted, get_tab_data, get_tab_chart_data, get_fuel_prices_by_type
 
 main_blueprint = Blueprint(
     'main',
@@ -20,6 +21,7 @@ def inject_today_prices():
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
+@cache.cached(timeout=3 * 60, unless=compare_form_submitted)
 def index():
     """Main route endpoint."""
     tab_data = get_tab_data()
