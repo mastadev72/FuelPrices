@@ -26,16 +26,13 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = env.str("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # Mail
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 465
-    MAIL_USERNAME = env.str("MAIL_USERNAME")
-    MAIL_PASSWORD = env.str("MAIL_PASSWORD")
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = True
-
     # Cache
-    CACHE_TYPE = "simple"
+    CACHE_TYPE = env.str("CACHE_TYPE")
+    CACHE_REDIS_HOST = "redis"
+    CACHE_REDIS_PORT = 6379
+    CACHE_REDIS_DB = 0
+    CACHE_REDIS_URL = "redis://redis:6379/0"
+    CACHE_DEFAULT_TIMEOUT = 500
 
     # API
     JSON_SORT_KEYS = False
@@ -52,8 +49,3 @@ class Config(object):
     def get_slack_webhook_key() -> str:
         """Get slack webhook key."""
         return Config.SLACK_WEBHOOK_KEY
-
-    @staticmethod
-    def get_mail_credentials() -> tuple:
-        """Get mail credentials for Flask-Mail."""
-        return Config.MAIL_USERNAME, Config.MAIL_PASSWORD

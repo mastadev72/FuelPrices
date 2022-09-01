@@ -10,8 +10,8 @@ WORKDIR .
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ENV FLASK_ENV=development \
-    FLASK_APP=manage
+ARG FLASK_ENV
+ARG FLASK_APP
 
 ENV GROUP_ID=1000 \
     USER_ID=1000
@@ -30,6 +30,8 @@ COPY ./requirements ./requirements
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
+RUN flask digest compile
+
 # copy project
 COPY . .
 
@@ -40,4 +42,8 @@ EXPOSE 5000
 
 USER www
 
-ENTRYPOINT ["gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "manage"]
+ENTRYPOINT [
+      "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "manage:application", "-k", "gevent", "--timeout", "300",
+      "--worker-connections", "1000", "--max-requests", "1000000", "--limit-request-line", "8190",
+      "--access-logfile", "'-'", "--error-logfile", "'-'"
+    ]

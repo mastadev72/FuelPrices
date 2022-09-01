@@ -1,4 +1,4 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 {% from "index_macros.html" import change_rate_badge %}
 
 {% block title %}
@@ -12,19 +12,19 @@
 {% block content %}
     <nav class="provider_nav">
         <button class="provider_menu_butt provider_menu_butt_active" data-tab="0">
-            <img src="{{ url_for('static', filename='img/gulf_logo.png') }}" alt="Gulf logo"> Gulf
+            <img src="{{ static_url_for('static', filename='img/gulf_logo.png') }}" alt="Gulf logo"> Gulf
         </button>
         <button class="provider_menu_butt" data-tab="1">
-            <img src="{{ url_for('static', filename='img/wissol_logo.png') }}" alt="Wissol logo"> Wissol
+            <img src="{{ static_url_for('static', filename='img/wissol_logo.png') }}" alt="Wissol logo"> Wissol
         </button>
         <button class="provider_menu_butt" data-tab="2">
-            <img src="{{ url_for('static', filename='img/rompetrol_logo.png') }}" alt="Rompetrol logo"> Rompetrol
+            <img src="{{ static_url_for('static', filename='img/rompetrol_logo.png') }}" alt="Rompetrol logo"> Rompetrol
         </button>
         <button class="provider_menu_butt" data-tab="3">
-            <img src="{{ url_for('static', filename='img/socar_logo.png') }}" alt="Socar logo"> Socar
+            <img src="{{ static_url_for('static', filename='img/socar_logo.png') }}" alt="Socar logo"> Socar
         </button>
         <button class="provider_menu_butt" data-tab="4">
-            <img src="{{ url_for('static', filename='img/lukoil_logo.png') }}" alt="Lukoil logo"> Lukoil
+            <img src="{{ static_url_for('static', filename='img/lukoil_logo.png') }}" alt="Lukoil logo"> Lukoil
         </button>
     </nav>
 
@@ -160,7 +160,7 @@
                 <div class="chart" id="compare-chart"></div>
                 {% include 'horizontal_chart_js.html' %}
             {% else %}
-                <img src="{{ url_for('static', filename='img/gauge.png') }}" alt="Fuel provider logo">
+                <img src="{{ static_url_for('static', filename='img/gauge.png') }}" alt="Fuel provider logo">
                 <h6>აირჩიეთ საწვავის ტიპი</h6>
             {% endif %}
         </div>
