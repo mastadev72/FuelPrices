@@ -1,11 +1,11 @@
 from src.app import create_app
 from src.extensions import db
 
-from .gulf_parser import parse_gulf_data
-from .rompetrol_parser import parse_rompetrol_data
-from .wissol_parser import parse_wissol_data
-from .lukoil_parser import parse_lukoil_data
-from .socar_parser import parse_socar_data
+from src.modules.crontab.parsers.gulf_parser import parse_gulf_data
+from src.modules.crontab.parsers.rompetrol_parser import parse_rompetrol_data
+from src.modules.crontab.parsers.wissol_parser import parse_wissol_data
+from src.modules.crontab.parsers.lukoil_parser import parse_lukoil_data
+from src.modules.crontab.parsers.socar_parser import parse_socar_data
 from .services import parsed_data_confirmation, fill_db_with_parsed_data
 
 

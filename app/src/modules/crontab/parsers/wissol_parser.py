@@ -22,7 +22,8 @@ def parse_wissol_data() -> dict:
     data = {}
 
     for item in items:
-        data.update({item['fuelType']: item['price']})
+        if item['fuelType'] != "":
+            data.update({item['fuelType']: item['price']})
 
     data.pop('ვისოლ გაზი')
 
