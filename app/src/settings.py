@@ -5,10 +5,15 @@ Most configuration is set via environment variables.
 
 For local development, use a .env file to set environment variables.
 """
+import os
+from pathlib import Path
+
 from environs import Env
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = Env()
-env.read_env()
+env.read_env(os.path.join(BASE_DIR, '.env.dev'))  # Change to .env.prod in production
 
 
 class Config(object):
