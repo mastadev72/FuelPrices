@@ -10,8 +10,8 @@ WORKDIR .
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ARG FLASK_ENV
-ARG FLASK_APP
+ENV FLASK_ENV=development \
+    FLASK_APP=manage
 
 ENV GROUP_ID=1000 \
     USER_ID=1000
@@ -20,30 +20,34 @@ ENV GROUP_ID=1000 \
 RUN python -m pip install -U --force-reinstall pip
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev vim \
-#    && apk add --virtual build-deps build-base gcc musl-dev jpeg-dev zlib-dev && \
-#    && apk add postgresql-dev \
+    && apk add --virtual build-deps build-base gcc musl-dev jpeg-dev zlib-dev \
+    && apk add postgresql-dev \
     && rm -rf /var/cache/apk/*
 
 COPY ./requirements.txt ./requirements.txt
 COPY ./requirements ./requirements
 
+RUN apk add build-base   # install the GCC, libc-dev and binutils packages (greenlet error)
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
-
-RUN flask digest compile
 
 # copy project
 COPY . .
 
+# collect static
+RUN ./scripts/linux/digest.sh   # ln -s src/static /static && flask digest compile && rm -rf /static
+
+
+
 RUN addgroup -g $GROUP_ID www
 RUN adduser -D -u $USER_ID -G www www -s /bin/sh
+
+# gunicorn logs permissions
+RUN chmod 666 /var/log/gunicorn.error.log \
+    && chmod 666 /var/log/gunicorn.access.log
 
 EXPOSE 5000
 
 USER www
 
-ENTRYPOINT [
-      "gunicorn", "-w", "4", "--bind", "0.0.0.0:5000", "manage:application", "-k", "gevent", "--timeout", "300",
-      "--worker-connections", "1000", "--max-requests", "1000000", "--limit-request-line", "8190",
-      "--access-logfile", "'-'", "--error-logfile", "'-'"
-    ]
+ENTRYPOINT [ "gunicorn", "-c", "/config/gunicorn.py", "manage:application" ]
