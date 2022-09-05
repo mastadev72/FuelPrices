@@ -52,7 +52,7 @@ monitor, compare fuel prices, and use API to access current prices
    pip install -r requirements/dev.txt
    ```
 
-6. Run powershell commands in app/scripts/windows to start local development server
+6. Run powershell commands in app/scripts to start local development server
     ```
     # Windows
    
@@ -93,6 +93,8 @@ simply open an issue with the tag "enhancement". Don't forget to give the projec
 
 Please use semantic commit
 messages: [Semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+
+Feel free to add yourself to the AUTHORS if your change(s) are significant (e.g new feature, critical bug fix ...).
 
 ### 👨🏽‍💻 Contributor
 
