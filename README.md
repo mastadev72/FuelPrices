@@ -16,7 +16,7 @@ monitor, compare fuel prices, and use API to access current prices
     git clone https://github.com/NickNaskida/FuelPrices.git
     ```
 
-2. Create a copy of .env.example file in app/src with name .env
+2. Create a copy of .env.example file in /app with name .env.dev
 
 3. Edit just created .env file content
 
@@ -52,7 +52,7 @@ monitor, compare fuel prices, and use API to access current prices
    pip install -r requirements/dev.txt
    ```
 
-6. Run powershell commands in app/scripts to start local development server
+6. Run commands in app/scripts to start local development server
     ```
     # Windows
    
