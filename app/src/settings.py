@@ -13,7 +13,7 @@ from environs import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, '.env.prod'))  # Change to .env.prod in production
+env.read_env(os.path.join(BASE_DIR, '.env.dev'))  # Change to .env.prod in production
 
 
 class Config(object):
@@ -45,6 +45,16 @@ class Config(object):
     # Slack logger
     SLACK_WEBHOOK_KEY = env.str("SLACK_WEBHOOK_KEY")
 
+    # App specific
+    FUEL_TYPES = (
+        ('diesel', "ევრო დიზელი"),
+        ('regular', "ევრო რეგულარი"),
+        ('diesel_alt', "დიზელი"),
+        ('regular_alt', "რეგულარი"),
+        ('premium_alt', "პრემიუმი"),
+        ('super_alt', "სუპერი")
+    )
+
     @staticmethod
     def get_debug_status() -> bool:
         """Get DEBUG status."""
@@ -54,3 +64,8 @@ class Config(object):
     def get_slack_webhook_key() -> str:
         """Get slack webhook key."""
         return Config.SLACK_WEBHOOK_KEY
+
+    @staticmethod
+    def get_fuel_types() -> tuple:
+        """Get supported fuel types."""
+        return Config.FUEL_TYPES
