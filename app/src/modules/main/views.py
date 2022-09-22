@@ -3,7 +3,9 @@ from flask import Blueprint, render_template
 from src.extensions import cache
 from src.modules.main.forms import ComparePriceForm
 from src.modules.main.models import FuelPriceModel
-from src.modules.main.services import compare_form_submitted, get_tab_data, get_tab_chart_data, get_fuel_prices_by_type
+from src.modules.main.services import (
+    compare_form_submitted, get_tab_data, get_tab_chart_data, get_fuel_prices_by_type, get_lowest_current_prices
+)
 
 main_blueprint = Blueprint(
     'main',
@@ -26,17 +28,18 @@ def index():
     """Main route endpoint."""
     tab_data = get_tab_data()
     tab_chart_data = get_tab_chart_data()
+    lowest_current_prices = get_lowest_current_prices()
     compare_data = None
 
     compare_form = ComparePriceForm()
 
     if compare_form.validate_on_submit():
         compare_data = get_fuel_prices_by_type(compare_form.type_alt.data)
-        return render_template('index.html', compare_form=compare_form, compare_data=compare_data, **tab_data,
-                               **tab_chart_data)
+        return render_template('index.html', compare_form=compare_form, compare_data=compare_data,
+                               lowest_current_prices=lowest_current_prices, **tab_data, **tab_chart_data)
 
-    return render_template('index.html', compare_form=compare_form, compare_data=compare_data, **tab_data,
-                           **tab_chart_data)
+    return render_template('index.html', compare_form=compare_form, compare_data=compare_data,
+                           lowest_current_prices=lowest_current_prices, **tab_data, **tab_chart_data)
 
 
 @main_blueprint.route('/about')

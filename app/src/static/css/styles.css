@@ -109,8 +109,7 @@ header img {
     gap: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
-    min-height: 70px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     height: 80px;
     animation-name: marqueeLine;
     animation-duration: 60s;
@@ -214,13 +213,38 @@ footer ul {
 }
 
 /*=============index=============*/
+.main_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.best_prices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.best_price_card {
+    min-width: 300px;
+    padding: 10px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.best_price_card img {
+    height: 25px;
+    width: auto;
+}
+
 .provider_nav {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
-    width: 100%;
 }
 
 .provider_menu_butt {
@@ -277,7 +301,7 @@ footer ul {
     display: none;
     flex-direction: row;
     gap: 35px;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .provider_tab_active {
@@ -288,8 +312,8 @@ footer ul {
     width: 330px;
     min-height: 340px;
     padding: 10px;
+    border: 1px solid #ced4da;
     border-radius: 5px;
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
     margin: 20px 0;
 }
 
@@ -332,8 +356,8 @@ footer ul {
     width: calc(100% - 330px);
     min-height: 340px;
     padding: 10px;
+    border: 1px solid #ced4da;
     border-radius: 5px;
-    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
     margin: 20px 0;
 }
 
@@ -343,10 +367,6 @@ footer ul {
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.compare_header h3 {
-    margin-bottom: 15px;
 }
 
 .compare_header form {
@@ -374,8 +394,10 @@ footer ul {
 .compare_body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-top: 10px;
+    min-height: 180px;
 }
 
 .compare_body img {
@@ -456,6 +478,11 @@ footer ul {
         max-width: 95%;
     }
 
+    .main_info {
+        flex-direction: column;
+        gap: 35px;
+    }
+
     .provider_tab {
         gap: 15px;
     }
@@ -504,6 +531,18 @@ footer ul {
 
     main {
         padding: 20px 10px;
+    }
+
+    .best_price_card {
+        padding: 10px;
+    }
+
+    .best_price_card h5 {
+        font-size: 16px;
+    }
+
+    .best_price_card img {
+        height: 20px;
     }
 
     .compare_header form {

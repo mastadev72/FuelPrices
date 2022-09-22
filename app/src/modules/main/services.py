@@ -2,7 +2,8 @@ from datetime import datetime, timedelta
 
 from flask import request
 
-from .models import FuelPriceModel
+from src.settings import Config
+from src.modules.main.models import FuelPriceModel
 
 
 def compare_form_submitted() -> bool:
@@ -110,9 +111,30 @@ def get_tab_chart_data() -> dict:
 
 def get_fuel_prices_by_type(type_alt: str) -> list:
     """
-    Returns all prices for certain fuel type.
+    Get all prices for certain fuel type.
 
     :param type_alt: fuel type
     :return: list of fuel price data for fuel type
     """
     return FuelPriceModel.read_current_prices({'type_alt': type_alt}, order='price')
+
+
+def get_lowest_current_prices():
+    """
+    Get current lowest prices for each fuel type.
+
+    :return: lowest fuel price dict
+    """
+    lowest_prices = {}
+
+    for fuel_type in Config.get_fuel_types():
+        fuel_prices = get_fuel_prices_by_type(fuel_type[0])
+
+        min_price = min([obj.price for obj in fuel_prices])  # get lowest price
+
+        lowest_prices[fuel_type[1]] = (
+            [i.provider for i in fuel_prices if i.price == min_price],  # get all providers with lowest price
+            min_price
+        )
+
+    return lowest_prices.items()
