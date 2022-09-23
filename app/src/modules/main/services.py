@@ -5,6 +5,8 @@ from flask import request
 from src.settings import Config
 from src.modules.main.models import FuelPriceModel
 
+chart_total_days = Config.get_chart_total_days()
+
 
 def compare_form_submitted() -> bool:
     """
@@ -41,7 +43,7 @@ def get_chart_date_list() -> list:
 
     :return: list of dates for ApexCharts
     """
-    start_date = datetime.utcnow().date() - timedelta(days=13)  # get date 2 weeks ago
+    start_date = datetime.utcnow().date() - timedelta(days=chart_total_days - 1)  # get date 2 weeks ago
     end_date = datetime.utcnow().date()
     dates_list = []
 
@@ -73,9 +75,9 @@ def get_provider_prices_in_date_sequence(provider, dates) -> dict:
         # fill with null values if not enough data
         provider_fuel_prices_count = provider_fuel_prices.count()
 
-        if provider_fuel_prices_count < 14:
+        if provider_fuel_prices_count < chart_total_days:
             for obj in fuel_name_dict.values():
-                for missing_day in range(14 - provider_fuel_prices_count):
+                for missing_day in range(chart_total_days - provider_fuel_prices_count):
                     obj.insert(0, 'null')
 
         data.update(fuel_name_dict)
