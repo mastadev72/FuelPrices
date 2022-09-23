@@ -527,6 +527,7 @@ footer ul {
     .container {
         width: 96%;
         max-width: 96%;
+        margin: 10px 0;
     }
 
     main {

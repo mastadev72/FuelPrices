@@ -45,6 +45,9 @@ class Config(object):
     # Slack logger
     SLACK_WEBHOOK_KEY = env.str("SLACK_WEBHOOK_KEY")
 
+    # Analytics chart total display days
+    CHART_TOTAL_DAYS = 10
+
     # App specific
     FUEL_TYPES = (
         ('diesel', "ევრო დიზელი"),
@@ -69,3 +72,8 @@ class Config(object):
     def get_fuel_types() -> tuple:
         """Get supported fuel types."""
         return Config.FUEL_TYPES
+
+    @staticmethod
+    def get_chart_total_days() -> int:
+        """Get total days for analytics chart to display."""
+        return Config.CHART_TOTAL_DAYS

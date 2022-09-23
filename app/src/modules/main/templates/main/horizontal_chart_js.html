@@ -16,6 +16,11 @@
                 },
             },
         },
+        dataLabels: {
+            formatter: function (val) {
+                return val.toFixed(2);
+            },
+        },
         plotOptions: {
             bar: {
                 borderRadius: 4,
