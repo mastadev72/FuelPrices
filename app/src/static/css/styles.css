@@ -536,6 +536,7 @@ footer ul {
 
     .best_price_card {
         padding: 10px;
+        min-width: 260px;
     }
 
     .best_price_card h5 {
