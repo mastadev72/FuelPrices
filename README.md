@@ -54,26 +54,17 @@ monitor, compare fuel prices, and use API to access current prices
 
 6. Run commands in app/scripts to start local development server
     ```
-    # Windows
-   
     cd app
-   
-   ./scripts/windows/init.ps1
-   ./scripts/windows/migrate.ps1
-   ./scripts/windows/digest.ps1
-   ./scripts/windows/fill_db.ps1
-   ./scripts/windows/run.ps1
-   
-   
-    # Linux
-   
-    cd app
-   
-    sudo bash ./scripts/linux/init.sh
-    sudo bash ./scripts/linux/migrate.sh
-    sudo bash ./scripts/linux/digest.sh
-    sudo bash ./scripts/linux/fill_db.sh
-    sudo bash ./scripts/linux/run.sh
+    ```
+
+   #### Windows
+    ```
+    ./scripts/windows/start_dev.ps1
+    ```
+
+   #### Linux
+    ```
+    sudo bash ./scripts/linux/start_dev.sh
     ```
 
 7. Go to http://127.0.0.1:5000/
@@ -91,11 +82,13 @@ In general, we follow the "fork-and-pull" Git workflow
 
 #### How to submit a Pull Request
 
-- Search our repository for open or closed Pull Requests that relate to your submission. You don't want to duplicate effort.
+- Search our repository for open or closed Pull Requests that relate to your submission. You don't want to duplicate
+  effort.
 - Fork the project on GitHub.
 - Create your feature branch
 - Do your work. Read the docs to this project.
-- Commit your changes (Please use semantic commit messages: [Semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716))
+- Commit your changes (Please use semantic commit
+  messages: [Semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716))
 - Push to the branch
 - Open a Pull Request and wait for feedback.
 
