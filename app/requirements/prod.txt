@@ -27,6 +27,7 @@ Flask-Static-Digest==0.2.1
 
 # Caching
 Flask-Caching>=1.7.2
+redis==4.3.4
 
 # Debug toolbar
 Flask-DebugToolbar==0.13.1
@@ -43,6 +44,8 @@ marshmallow-sqlalchemy==0.28.1
 requests==2.28.1
 types-requests==2.28.9
 beautifulsoup4==4.11.1
+
+
 
 
 
