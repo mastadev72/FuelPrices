@@ -91,31 +91,15 @@ def configure_logger() -> None:
                 "formatter": "default",
                 "level": "ERROR",
             },
-            "error_file": {
-                "class": "logging.handlers.RotatingFileHandler",
-                "formatter": "default",
-                "filename": "/var/log/gunicorn.error.log",
-                "maxBytes": 10000,
-                "backupCount": 3,
-                "delay": "True",
-            },
-            "access_file": {
-                "class": "logging.handlers.RotatingFileHandler",
-                "formatter": "access",
-                "filename": "/var/log/gunicorn.access.log",
-                "maxBytes": 10000,
-                "backupCount": 3,
-                "delay": "True",
-            }
         },
         "loggers": {
             "gunicorn.error": {
-                "handlers": ["console"] if debug else ["console", "slack", "error_file"],
+                "handlers": ["console"] if debug else ["console", "slack"],
                 "level": "INFO",
                 "propagate": False,
             },
             "gunicorn.access": {
-                "handlers": ["console"] if debug else ["console", "access_file"],
+                "handlers": ["console"],
                 "level": "INFO",
                 "propagate": False,
             }

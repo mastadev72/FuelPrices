@@ -127,7 +127,7 @@ ENV/
 
 # pytest
 app/src/tests/
-.pytest_cache
+.pytest_cache/
 
 # local db stuff
 app/src/migrations/

@@ -8,7 +8,7 @@ from environs import Env
 BASE_DIR = Path(__file__).resolve().parent
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, '.env.prod'))  # Change to .env.prod in production
+env.read_env(os.path.join(BASE_DIR, '.env.prod'))
 
 bind = "0.0.0.0:" + env.str("PORT")
 workers = env.int("GUNICORN_WORKERS")
@@ -17,5 +17,5 @@ timeout = 300
 max_requests = 1000000
 limit_request_line = 8190
 
-accesslog = "/var/log/gunicorn.access.log"
-errorlog = "/var/log/gunicorn.error.log"
+accesslog = "-"
+errorlog = "-"
