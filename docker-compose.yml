@@ -13,6 +13,7 @@ services:
       - "5000:5000"
     depends_on:
       - postgres
+      - redis
     volumes:
       - app-data:/app
       - static-volume:/app/src/static/
@@ -41,29 +42,28 @@ services:
     build:
       context: nginx
       dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     env_file:
       - app/.env.prod
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+      - app
     volumes:
       - nginx-data:/var/log/nginx
       - static-volume:/app/src/static/
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    depends_on:
-      - app
+      - /certbot/www:/var/www/certbot/:ro
+      - /certbot/conf/:/etc/nginx/ssl/:ro
 
   certbot:
     container_name: certbot
-    image: certbot/certbot
+    image: certbot/certbot:latest
     depends_on:
       - nginx
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/app --email nikoloz2005@gmail.com -agree-tos --no-eff-email -d sawvavi.tk
+      - /certbot/www/:/var/www/certbot/:rw
+      - /certbot/conf/:/etc/letsencrypt/:rw
 
 
 volumes:
