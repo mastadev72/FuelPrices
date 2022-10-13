@@ -18,7 +18,7 @@
                 {% for name, price_obj in lowest_current_prices %}
                     <div class="best_price_card">
                         <h5>
-                            <b style="color: #1075ef">{{ price_obj[1] }} &#8382;</b> {{ name }} -
+                            <b style="color: #1075ef">{{ '%0.2f'|format(price_obj[1]) }} &#8382;</b> {{ name }} -
                             {% for provider in price_obj[0] %}
                                 {{ card_logo_img(provider) }}{% if not loop.last %}, {% endif %}
                             {% endfor %}

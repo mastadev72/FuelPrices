@@ -35,16 +35,11 @@ RUN pip install gunicorn
 COPY . .
 
 # collect static
-RUN ./scripts/linux/digest.sh   # ln -s src/static /static && flask digest compile && rm -rf /static
+RUN ./scripts/linux/digest.sh
 
-
-
+# create user
 RUN addgroup -g $GROUP_ID www
 RUN adduser -D -u $USER_ID -G www www -s /bin/sh
-
-# gunicorn logs permissions
-RUN chmod 666 /var/log/gunicorn.error.log \
-    && chmod 666 /var/log/gunicorn.access.log
 
 EXPOSE 5000
 
