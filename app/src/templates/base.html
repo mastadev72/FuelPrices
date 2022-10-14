@@ -7,11 +7,25 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="description" content="Sawvavi - საწვავის ფასების აპლიკაცია.">
+    <meta name="keywords" content="Fuel Prices, საწვავის ფასები, საწვავი, Sawvavi, sawvavi, fuel prices georgia">
+    <meta name="robots" content="all">
+    <meta name="Author" content="Nikoloz Naskidashvili">
+    <meta name="Copyright" content="Nikoloz Naskidashvili">
+    <meta name="Address" content="Georgia, Tbilisi">
+    <meta property="og:locale" content="ka-GE">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ self.title() }} — Sawvavi">
+    <meta property="og:description" content="Sawvavi - საწვავის ფასების აპლიკაცია.">
+    <meta property="og:image" content="{{ static_url_for('static', filename='img/logo.png') }}">
+    <meta property="og:url" content="{{ request.base_url }}">
+    <meta property="og:site_name" content="Sawvavi">
+
     <link rel="icon" type="image/png" href="{{ static_url_for('static', filename='img/logo.png') }}"/>
 
     <title>
-        {% block title %}
-        {% endblock %}
+        {% block title %}{% endblock %} — Sawvavi
     </title>
 
     <!--  Fonts  -->
