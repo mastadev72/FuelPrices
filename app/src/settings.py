@@ -13,7 +13,7 @@ from environs import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, '.env'))  # Change to .env.prod in production
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 class Config(object):
