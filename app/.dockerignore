@@ -106,7 +106,6 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -124,12 +123,16 @@ ENV/
 
 # mypy
 .mypy_cache/
+mypy.ini
+
+# tox
+tox.ini
 
 # pytest
-app/src/tests/
 .pytest_cache/
+tests/
 
-# local db stuff
-app/src/migrations/
-app/src/dev.db
-app/src/.env.example
+# local stuff
+dev.db
+.env.example
+.env.dev

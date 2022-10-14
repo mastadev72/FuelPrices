@@ -19,7 +19,7 @@ ENV GROUP_ID=1000 \
 # install dependencies
 RUN python -m pip install -U --force-reinstall pip
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev vim \
+    && apk add postgresql-dev gcc python3-dev musl-dev \
     && apk add --virtual build-deps build-base gcc musl-dev jpeg-dev zlib-dev \
     && apk add postgresql-dev \
     && rm -rf /var/cache/apk/*
@@ -45,4 +45,4 @@ EXPOSE 5000
 
 USER www
 
-ENTRYPOINT [ "gunicorn", "-c", "/config/gunicorn.py", "manage:application" ]
+ENTRYPOINT [ "./config/entrypoint.sh" ]
