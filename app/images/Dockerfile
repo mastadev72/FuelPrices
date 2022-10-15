@@ -34,6 +34,10 @@ RUN pip install gunicorn
 # copy project
 COPY . .
 
+# grant permissions
+RUN chmod +x ./scripts/linux/digest.sh
+RUN chmod +x ./config/entrypoint.sh
+
 # collect static
 RUN ./scripts/linux/digest.sh
 
