@@ -11,6 +11,7 @@ from pathlib import Path
 from environs import Env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_DIR = BASE_DIR / "src"
 
 env = Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -26,6 +27,9 @@ class Config(object):
     SEND_FILE_MAX_AGE_DEFAULT = env.int("SEND_FILE_MAX_AGE_DEFAULT")
     DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
+
+    # Static
+    STATIC_FOLDER = os.path.join(SRC_DIR, 'static')
 
     # Database
     SQLALCHEMY_DATABASE_URI = env.str("DATABASE_URL")
@@ -77,3 +81,8 @@ class Config(object):
     def get_chart_total_days() -> int:
         """Get total days for analytics chart to display."""
         return Config.CHART_TOTAL_DAYS
+
+    @staticmethod
+    def get_static_folder() -> str:
+        """Get total days for analytics chart to display."""
+        return Config.STATIC_FOLDER
