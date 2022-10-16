@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_from_directory
 
 from src.extensions import cache
+from src.settings import Config
 from src.modules.main.forms import ComparePriceForm
 from src.modules.main.models import FuelPriceModel
 from src.modules.main.services import (
@@ -46,3 +47,10 @@ def index():
 def about():
     """About route endpoint."""
     return render_template('about.html')
+
+
+@main_blueprint.route("/static/<path:filename>")
+def staticfiles(filename):
+    """Static files route endpoint."""
+    static_path = Config.get_static_folder()
+    return send_from_directory(static_path, filename)
