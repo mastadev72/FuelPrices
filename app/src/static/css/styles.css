@@ -227,7 +227,7 @@ footer ul {
 }
 
 .best_price_card {
-    min-width: 320px;
+    min-width: 340px;
     padding: 10px 20px;
     border: 1px solid #ced4da;
     border-radius: 5px;
@@ -535,8 +535,8 @@ footer ul {
     }
 
     .best_price_card {
-        padding: 10px;
-        min-width: 260px;
+        padding: 5px 10px;
+        min-width: 268px;
     }
 
     .best_price_card h5 {

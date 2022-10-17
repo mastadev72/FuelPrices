@@ -47,10 +47,10 @@ class BaseConfig(object):
 
     # App specific
     FUEL_TYPES = (
-        ('diesel', "ევრო დიზელი"),
-        ('regular', "ევრო რეგულარი"),
-        ('diesel_alt', "დიზელი"),
-        ('regular_alt', "რეგულარი"),
+        ('diesel', "დიზელი"),
+        ('regular', "რეგულარი"),
+        ('diesel_alt', "ევრო დიზელი*"),
+        ('regular_alt', "ევრო რეგულარი*"),
         ('premium_alt', "პრემიუმი"),
         ('super_alt', "სუპერი")
     )
