@@ -5,7 +5,7 @@ from pathlib import Path
 
 from environs import Env
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
