@@ -14,16 +14,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, '.env'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
 
 
-class Config(object):
+class BaseConfig(object):
     """Config class for flask application."""
 
     # Flask
     ENV = env.str("FLASK_ENV", default="production")
     DEBUG = ENV == "development"
     SECRET_KEY = env.str("SECRET_KEY")
+    LOG_LEVEL = env.str("LOG_LEVEL", default="INFO")
     SEND_FILE_MAX_AGE_DEFAULT = env.int("SEND_FILE_MAX_AGE_DEFAULT")
     DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
@@ -37,20 +38,12 @@ class Config(object):
 
     # Cache
     CACHE_TYPE = env.str("CACHE_TYPE")
-    CACHE_REDIS_HOST = "redis"
-    CACHE_REDIS_PORT = 6379
-    CACHE_REDIS_DB = 0
-    CACHE_REDIS_URL = "redis://redis:6379/0"
-    CACHE_DEFAULT_TIMEOUT = 500
 
     # API
     JSON_SORT_KEYS = False
 
     # Slack logger
     SLACK_WEBHOOK_KEY = env.str("SLACK_WEBHOOK_KEY")
-
-    # Analytics chart total display days
-    CHART_TOTAL_DAYS = 10
 
     # App specific
     FUEL_TYPES = (
@@ -62,27 +55,65 @@ class Config(object):
         ('super_alt', "სუპერი")
     )
 
-    @staticmethod
-    def get_debug_status() -> bool:
+    CHART_TOTAL_DAYS = 10  # Analytics chart total display days
+
+    @classmethod
+    def get_debug_status(cls) -> bool:
         """Get DEBUG status."""
-        return Config.DEBUG
+        return cls.DEBUG
 
-    @staticmethod
-    def get_slack_webhook_key() -> str:
+    @classmethod
+    def get_slack_webhook_key(cls) -> str:
         """Get slack webhook key."""
-        return Config.SLACK_WEBHOOK_KEY
+        return cls.SLACK_WEBHOOK_KEY
 
-    @staticmethod
-    def get_fuel_types() -> tuple:
+    @classmethod
+    def get_fuel_types(cls) -> tuple:
         """Get supported fuel types."""
-        return Config.FUEL_TYPES
+        return cls.FUEL_TYPES
 
-    @staticmethod
-    def get_chart_total_days() -> int:
+    @classmethod
+    def get_chart_total_days(cls) -> int:
         """Get total days for analytics chart to display."""
-        return Config.CHART_TOTAL_DAYS
+        return cls.CHART_TOTAL_DAYS
 
-    @staticmethod
-    def get_static_folder() -> str:
+    @classmethod
+    def get_static_folder(cls) -> str:
         """Get total days for analytics chart to display."""
-        return Config.STATIC_FOLDER
+        return cls.STATIC_FOLDER
+
+    @classmethod
+    def get_log_level(cls) -> str:
+        """Get log level."""
+        return cls.LOG_LEVEL
+
+
+class Production(BaseConfig):
+    DEBUG = False
+
+    # Database
+    db_user = env.str("DATABASE_USERNAME", default="postgres")
+    db_pass = env.str("DATABASE_PASSWORD", default="postgres")
+    db_host = env.str("DATABASE_HOST", default="localhost")
+    db_port = env.str("DATABASE_PORT", default="5432")
+    db_name = env.str("DATABASE_NAME", default="postgres")
+
+    SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://' \
+                              f'{db_user}:{db_pass}@' \
+                              f'{db_host}:{db_port}/{db_name}'
+
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "pool_pre_ping": True,
+        "pool_reset_on_return": 'commit',  # looks like postgres likes this more than rollback
+        'pool_size': env.int("SQLALCHEMY_POOL_SIZE", default=20),
+        'pool_recycle': env.int("SQLALCHEMY_POOL_RECYCLE", default=1200),
+        'pool_timeout': env.int("SQLALCHEMY_POOL_TIMEOUT", default=5),
+        'max_overflow': env.int("SQLALCHEMY_MAX_OVERFLOW", default=10),
+    }
+
+    # Cache
+    CACHE_REDIS_HOST = "redis"
+    CACHE_REDIS_PORT = 6379
+    CACHE_REDIS_DB = 0
+    CACHE_REDIS_URL = "redis://redis:6379/0"
+    CACHE_DEFAULT_TIMEOUT = 500
