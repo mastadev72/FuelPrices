@@ -88,7 +88,7 @@ class BaseConfig(object):
         return cls.LOG_LEVEL
 
 
-class Production(BaseConfig):
+class ProductionConfig(BaseConfig):
     """Production configuration."""
 
     DEBUG = False

@@ -5,10 +5,10 @@ from pathlib import Path
 
 from environs import Env
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, '.env'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
 
 bind = "0.0.0.0:" + env.str("PORT")
 workers = env.int("GUNICORN_WORKERS")
