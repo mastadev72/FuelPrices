@@ -2,10 +2,10 @@ from datetime import datetime, timedelta
 
 from flask import request
 
-from src.settings import Config
+from src.settings import BaseConfig
 from src.modules.main.models import FuelPriceModel
 
-chart_total_days = Config.get_chart_total_days()
+chart_total_days = BaseConfig.get_chart_total_days()
 
 
 def compare_form_submitted() -> bool:
@@ -129,7 +129,7 @@ def get_lowest_current_prices():
     """
     lowest_prices = {}
 
-    for fuel_type in Config.get_fuel_types():
+    for fuel_type in BaseConfig.get_fuel_types():
         fuel_prices = get_fuel_prices_by_type(fuel_type[0])
 
         min_price = min([obj.price for obj in fuel_prices])  # get lowest price
