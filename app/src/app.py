@@ -3,7 +3,7 @@ from logging.config import dictConfig
 from flask import Flask, render_template
 
 from .database import db
-from .settings import BaseConfig
+from .settings import BaseConfig, ProductionConfig
 from .extensions import extensions, extensions_with_db
 
 
