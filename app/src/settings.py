@@ -89,6 +89,8 @@ class BaseConfig(object):
 
 
 class Production(BaseConfig):
+    """Production configuration."""
+
     DEBUG = False
 
     # Database
