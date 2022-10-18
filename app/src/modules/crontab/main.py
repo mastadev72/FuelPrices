@@ -1,69 +1,47 @@
-from src.app import create_app
-from src.extensions import db
+import logging
 
+from src.extensions import db
 from src.modules.crontab.parsers.gulf_parser import parse_gulf_data
 from src.modules.crontab.parsers.rompetrol_parser import parse_rompetrol_data
 from src.modules.crontab.parsers.wissol_parser import parse_wissol_data
 from src.modules.crontab.parsers.lukoil_parser import parse_lukoil_data
 from src.modules.crontab.parsers.socar_parser import parse_socar_data
-from .services import parsed_data_confirmation, fill_db_with_parsed_data
+from src.modules.crontab.services import parsed_data_confirmation, fill_db_with_parsed_data
 
 
 def parse_data() -> None:
     """
     Main function that is executed by cronjob.
 
+    Parses data, checks validity and fills database in case of success.
+
     :return: None
     """
-    # TODO: Refactor this
+    app_logger = logging.getLogger('app')
 
-    app = create_app()
+    data = {
+        'Gulf': parse_gulf_data,
+        'Rompetrol': parse_rompetrol_data,
+        'Wissol': parse_wissol_data,
+        'Lukoil': parse_lukoil_data,
+        'Socar': parse_socar_data
+    }
 
-    gulf_prices = {}
-    rompetrol_prices = {}
-    wissol_prices = {}
-    lukoil_prices = {}
-    socar_prices = {}
-    error_occurred = False
+    try:
+        for provider, provider_parse_func in data.items():
+            for fuel_name, fuel_price in provider_parse_func().items():
+                # check if data is valid
+                if not parsed_data_confirmation(fuel_name, fuel_price, provider):
+                    app_logger.critical("Fail during price data parsing ")
+                    db.session.rollback()  # rollback
+                    return
 
-    for name, price in parse_gulf_data().items():
-        gulf_prices[name] = str(price)
-        if not parsed_data_confirmation(name, price, 'Gulf'):
-            error_occurred = True
+                # fill database
+                fill_db_with_parsed_data(fuel_name, fuel_price, provider)
 
-    for name, price in parse_rompetrol_data().items():
-        rompetrol_prices[name] = str(price)
-        if not parsed_data_confirmation(name, price, 'Rompetrol'):
-            error_occurred = True
-
-    for name, price in parse_wissol_data().items():
-        wissol_prices[name] = str(price)
-        if not parsed_data_confirmation(name, price, 'Wissol'):
-            error_occurred = True
-
-    for name, price in parse_lukoil_data().items():
-        lukoil_prices[name] = str(price)
-        if not parsed_data_confirmation(name, price, 'Lukoil'):
-            error_occurred = True
-
-    for name, price in parse_socar_data().items():
-        socar_prices[name] = str(price)
-        if not parsed_data_confirmation(name, price, 'Socar'):
-            error_occurred = True
-
-    if not error_occurred:
-        for name, price in gulf_prices.items():
-            fill_db_with_parsed_data(name, price, 'Gulf')
-        for name, price in rompetrol_prices.items():
-            fill_db_with_parsed_data(name, price, 'Rompetrol')
-        for name, price in wissol_prices.items():
-            fill_db_with_parsed_data(name, price, 'Wissol')
-        for name, price in lukoil_prices.items():
-            fill_db_with_parsed_data(name, price, 'Lukoil')
-        for name, price in socar_prices.items():
-            fill_db_with_parsed_data(name, price, 'Socar')
-
+        # commit changes
         db.session.commit()
-        app.logger.info("Successfully parsed price data")
-    else:
-        app.logger.critical("Fail during price data parsing ")
+        app_logger.info("Successfully parsed price data")
+    except Exception as exc:  # noqa B902
+        app_logger.critical(f"Parser function fail, error message: {exc}")
+        db.session.rollback()  # rollback

@@ -89,7 +89,7 @@ def configure_logger() -> None:
             "slack": {
                 "class": "src.error_handlers.HTTPSlackHandler",
                 "formatter": "default",
-                "level": "ERROR",
+                "level": "WARNING",
             },
         },
         "loggers": {

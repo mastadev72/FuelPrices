@@ -3,24 +3,17 @@ from typing import Optional
 from datetime import datetime, timedelta
 
 from src.modules.main.models import FuelPriceModel
+from src.settings import BaseConfig
 
 
-def get_fuel_type(fuel_name: str) -> Optional[str]:
+def get_fuel_type_by_name(fuel_name: str) -> Optional[str]:
     """
-    Identify fuel type.
+    Get fuel type by name.
 
     :param fuel_name: fuel name
     :return: fuel type / None
     """
-    fuel_types = {
-        'other': ['დიზელ ენერჯი'],
-        'diesel': ['ევრო დიზელი'],
-        'regular': ['ევრო რეგულარი'],
-        'diesel_alt': ['G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი', 'ნანო დიზელი'],
-        'regular_alt': ['G-Force ევრო რეგულარი'],
-        'premium_alt': ['G-Force პრემიუმი', 'Efix ევრო პრემიუმი', 'ეკო პრემიუმი', 'პრემიუმ ავანგარდი', 'ნანო პრემიუმი'],
-        'super_alt': ['G-Force სუპერი', 'Efix სუპერი', 'ეკო სუპერი', 'სუპერ ეკტო', 'ნანო სუპერი']
-    }
+    fuel_types = BaseConfig.get_fuel_type_by_names()
 
     for fuel_type, fuel_list in fuel_types.items():
         if fuel_name in fuel_list:
@@ -38,15 +31,10 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     :param provider: fuel provider
     :return: True / False
     """
-    app_logger = logging.getLogger('app')
+    app_logger = logging.getLogger('app')  # get flask app logger
 
     # Name check
-    names_list = [
-        'დიზელ ენერჯი', 'ევრო დიზელი', 'ევრო რეგულარი', 'G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი',
-        'ნანო დიზელი', 'G-Force ევრო რეგულარი', 'G-Force პრემიუმი', 'Efix ევრო პრემიუმი',
-        'ეკო პრემიუმი', 'პრემიუმ ავანგარდი', 'ნანო პრემიუმი', 'G-Force სუპერი', 'Efix სუპერი', 'ეკო სუპერი',
-        'სუპერ ეკტო', 'ნანო სუპერი'
-    ]
+    names_list = BaseConfig.get_fuel_names()
 
     if name not in names_list or name == "":
         app_logger.critical(f"{provider} fuel name check failed")
@@ -60,7 +48,7 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
         return False
 
     # Fuel type check
-    if get_fuel_type(name) is None:
+    if get_fuel_type_by_name(name) is None:
         app_logger.critical(f"{provider} fuel type not found")
         return False
 
@@ -78,7 +66,7 @@ def fill_db_with_parsed_data(name: str, price: str, provider: str) -> None:
     :return: None
     """
     fuel_price_model = FuelPriceModel()
-    fuel_type = get_fuel_type(name)
+    fuel_type = get_fuel_type_by_name(name)
     fuel_price_objects = fuel_price_model.query.filter_by(
         provider=provider, name=name, type_alt=fuel_type, date=datetime.utcnow().date()
     )
