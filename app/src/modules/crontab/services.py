@@ -5,9 +5,9 @@ from datetime import datetime, timedelta
 from src.modules.main.models import FuelPriceModel
 
 
-def get_fuel_type(fuel_name: str) -> Optional[str]:
+def get_fuel_type_by_name(fuel_name: str) -> Optional[str]:
     """
-    Identify fuel type.
+    Get fuel type by name.
 
     :param fuel_name: fuel name
     :return: fuel type / None
@@ -60,7 +60,7 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
         return False
 
     # Fuel type check
-    if get_fuel_type(name) is None:
+    if get_fuel_type_by_name(name) is None:
         app_logger.critical(f"{provider} fuel type not found")
         return False
 
@@ -78,7 +78,7 @@ def fill_db_with_parsed_data(name: str, price: str, provider: str) -> None:
     :return: None
     """
     fuel_price_model = FuelPriceModel()
-    fuel_type = get_fuel_type(name)
+    fuel_type = get_fuel_type_by_name(name)
     fuel_price_objects = fuel_price_model.query.filter_by(
         provider=provider, name=name, type_alt=fuel_type, date=datetime.utcnow().date()
     )
