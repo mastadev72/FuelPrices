@@ -55,6 +55,25 @@ class BaseConfig(object):
         ('super_alt', "სუპერი")
     )
 
+    FUEL_TYPE_BY_NAMES = {
+        'other': ['დიზელ ენერჯი'],
+        'diesel': ['ევრო დიზელი'],
+        'regular': ['ევრო რეგულარი'],
+        'diesel_alt': ['G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი', 'ნანო დიზელი'],
+        'regular_alt': ['G-Force ევრო რეგულარი'],
+        'premium_alt': ['G-Force პრემიუმი', 'Efix ევრო პრემიუმი', 'ეკო პრემიუმი', 'პრემიუმ ავანგარდი', 'ნანო პრემიუმი'],
+        'super_alt': ['G-Force სუპერი', 'Efix სუპერი', 'ეკო სუპერი', 'სუპერ ეკტო', 'ნანო სუპერი']
+    }
+
+    FUEL_NAMES = [
+        'G-Force ევრო რეგულარი', 'G-Force ევრო დიზელი', 'G-Force პრემიუმი', 'G-Force სუპერი',
+        'ეკო სუპერი', 'ეკო დიზელი', 'ეკო პრემიუმი', 'დიზელ ენერჯი',
+        'Efix ევრო დიზელი', 'Efix ევრო პრემიუმი', 'Efix სუპერი',
+        'ნანო დიზელი', 'ნანო პრემიუმი', 'ნანო სუპერი',
+        'პრემიუმ ავანგარდი', 'სუპერ ეკტო',
+        'ევრო დიზელი', 'ევრო რეგულარი'
+    ]
+
     CHART_TOTAL_DAYS = 10  # Analytics chart total display days
 
     @classmethod
@@ -66,11 +85,6 @@ class BaseConfig(object):
     def get_slack_webhook_key(cls) -> str:
         """Get slack webhook key."""
         return cls.SLACK_WEBHOOK_KEY
-
-    @classmethod
-    def get_fuel_types(cls) -> tuple:
-        """Get supported fuel types."""
-        return cls.FUEL_TYPES
 
     @classmethod
     def get_chart_total_days(cls) -> int:
@@ -86,6 +100,21 @@ class BaseConfig(object):
     def get_log_level(cls) -> str:
         """Get log level."""
         return cls.LOG_LEVEL
+
+    @classmethod
+    def get_fuel_names(cls) -> list:
+        """Get fuel names."""
+        return cls.FUEL_NAMES
+
+    @classmethod
+    def get_fuel_types(cls) -> tuple:
+        """Get supported fuel types."""
+        return cls.FUEL_TYPES
+
+    @classmethod
+    def get_fuel_type_by_names(cls) -> dict:
+        """Get fuel type by name."""
+        return cls.FUEL_TYPE_BY_NAMES
 
 
 class ProductionConfig(BaseConfig):
