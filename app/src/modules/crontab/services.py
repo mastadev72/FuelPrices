@@ -38,7 +38,7 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     :param provider: fuel provider
     :return: True / False
     """
-    app_logger = logging.getLogger('app')
+    app_logger = logging.getLogger('app')  # get flask app logger
 
     # Name check
     names_list = [
