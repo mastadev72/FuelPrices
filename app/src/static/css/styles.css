@@ -535,8 +535,7 @@ footer ul {
     }
 
     .best_price_card {
-        padding: 5px 10px;
-        min-width: 268px;
+        min-width: 300px;
     }
 
     .best_price_card h5 {
@@ -568,6 +567,11 @@ footer ul {
 }
 
 @media (max-width: 370px) {
+    .best_price_card {
+        padding: 5px 10px;
+        min-width: 268px;
+    }
+
     .price_obj {
         font-size: 12px;
     }
