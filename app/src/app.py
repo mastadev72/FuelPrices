@@ -66,7 +66,7 @@ def register_commands(app: Flask) -> None:
 
 def configure_logger() -> None:
     """Configure logger here."""
-    debug = BaseConfig.get_debug_status()
+    debug = ProductionConfig.get_debug_status()
 
     dictConfig({
         "version": 1,
@@ -120,7 +120,7 @@ def create_app() -> Flask:
     configure_logger()
 
     app = Flask(__name__)
-    app.config.from_object(BaseConfig)
+    app.config.from_object(ProductionConfig)
 
     register_extensions(app)
     register_blueprints(app)
