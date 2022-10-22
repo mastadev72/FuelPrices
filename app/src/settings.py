@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
 
 
 class BaseConfig(object):
@@ -22,7 +22,7 @@ class BaseConfig(object):
 
     # Flask
     ENV = env.str("FLASK_ENV", default="production")
-    DEBUG = ENV == "development"
+    DEBUG = env.int("FLASK_DEBUG", default=0)
     SECRET_KEY = env.str("SECRET_KEY")
     LOG_LEVEL = env.str("LOG_LEVEL", default="INFO")
     SEND_FILE_MAX_AGE_DEFAULT = env.int("SEND_FILE_MAX_AGE_DEFAULT")
