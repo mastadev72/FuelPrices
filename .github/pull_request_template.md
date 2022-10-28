@@ -21,6 +21,6 @@ Please include a summary of the change or which issue is fixed.
 - [ ] I have made corresponding changes to the documentation where needed
 - [ ] My changes generate no new warnings
 - [ ] I have checked my code and corrected any misspellings
-- [ ] I have updated `master` and merged to my branch before submitting pull request
-- [ ] My pull request generate no conflicts with `master` branch
+- [ ] I have updated the `master` and merged to my branch before submitting the pull request
+- [ ] My pull request generates no conflicts with the `master` branch
 - [ ] I requested code review from other team members
