@@ -1,7 +1,8 @@
-import requests
 from pprint import pprint
 
 from bs4 import BeautifulSoup
+
+from src.modules.crontab.utils import request_url
 
 URL = 'https://www.sgp.ge/ge/price'
 HEADERS = {
@@ -16,7 +17,7 @@ def parse_socar_data() -> dict:
 
     :return: dict with Socar fuel prices
     """
-    response = requests.get(URL, headers=HEADERS)
+    response = request_url(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     title_items = soup.find_all('th')[1:]
     price_items = soup.find_all('tr')[0].find_all('td')[1:]

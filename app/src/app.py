@@ -6,6 +6,8 @@ from .database import db
 from .settings import BaseConfig, ProductionConfig  # noqa: F401
 from .extensions import extensions, extensions_with_db
 
+SettingsConfig = ProductionConfig
+
 
 def import_models() -> None:
     """Import models here for Flask-Migrate to work."""
@@ -66,7 +68,7 @@ def register_commands(app: Flask) -> None:
 
 def configure_logger() -> None:
     """Configure logger here."""
-    debug = ProductionConfig.get_debug_status()
+    debug = SettingsConfig.get_debug_status()
 
     dictConfig({
         "version": 1,
@@ -120,7 +122,7 @@ def create_app() -> Flask:
     configure_logger()
 
     app = Flask(__name__)
-    app.config.from_object(ProductionConfig)
+    app.config.from_object(SettingsConfig)
 
     register_extensions(app)
     register_blueprints(app)
