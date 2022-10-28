@@ -1,5 +1,4 @@
 import json
-
 from pprint import pprint
 
 from src.modules.crontab.utils import request_url

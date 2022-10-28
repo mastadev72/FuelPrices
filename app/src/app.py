@@ -6,7 +6,7 @@ from .database import db
 from .settings import BaseConfig, ProductionConfig  # noqa: F401
 from .extensions import extensions, extensions_with_db
 
-SettingsConfig = ProductionConfig
+SettingsConfig = BaseConfig
 
 
 def import_models() -> None:
