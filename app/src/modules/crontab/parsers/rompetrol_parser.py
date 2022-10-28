@@ -1,7 +1,8 @@
-import requests
 from pprint import pprint
 
 from bs4 import BeautifulSoup
+
+from src.modules.crontab.utils import request_url
 
 URL = 'https://www.rompetrol.ge/#pricelist'
 HEADERS = {
@@ -16,7 +17,7 @@ def parse_rompetrol_data() -> dict:
 
     :return: dict with Rompetrol fuel prices
     """
-    response = requests.get(URL, headers=HEADERS)
+    response = request_url(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     items = soup.find_all('tr')[1:]
 

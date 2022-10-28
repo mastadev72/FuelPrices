@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
 
 
 class BaseConfig(object):

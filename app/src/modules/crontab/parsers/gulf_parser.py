@@ -1,7 +1,8 @@
-import requests
 from pprint import pprint
 
 from bs4 import BeautifulSoup
+
+from src.modules.crontab.utils import request_url
 
 URL = 'https://gulf.ge/'
 HEADERS = {
@@ -16,7 +17,7 @@ def parse_gulf_data() -> dict:
 
     :return: dict with Gulf fuel prices
     """
-    response = requests.get(URL, headers=HEADERS)
+    response = request_url(URL, headers=HEADERS)
     soup = BeautifulSoup(response.content, 'html.parser')
     items = soup.find_all('div', class_='price_entry')
 

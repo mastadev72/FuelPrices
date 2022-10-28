@@ -1,7 +1,7 @@
 import json
-
-import requests
 from pprint import pprint
+
+from src.modules.crontab.utils import request_url
 
 URL = 'https://api.wissol.ge/FuelPrice'
 HEADERS = {
@@ -16,7 +16,7 @@ def parse_wissol_data() -> dict:
 
     :return: dict with Wissol fuel prices
     """
-    response = requests.get(URL, headers=HEADERS).text
+    response = request_url(URL, headers=HEADERS).text
     items = json.loads(response)
 
     data = {}
