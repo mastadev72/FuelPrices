@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TypeVar
+from typing import TypeVar, Optional
 from datetime import datetime, timedelta, date
 
 from src.database import PkModel, Column, db
@@ -22,7 +22,7 @@ class FuelPriceModel(PkModel):
     change_rate = Column(db.Float)
 
     @classmethod
-    def read_current_prices(cls, filter_by_kwargs: dict = None, order: str = 'id') -> FuelPriceModel:
+    def read_current_prices(cls, filter_by_kwargs: Optional[dict] = None, order: str = 'id') -> FuelPriceModel:
         """
         Read current fuel prices (dates have UTC timezone).
 
@@ -43,7 +43,7 @@ class FuelPriceModel(PkModel):
         return current_prices
 
     @classmethod
-    def read_previous_prices(cls, filter_by_kwargs: dict = None, order: str = 'id') -> FuelPriceModel:
+    def read_previous_prices(cls, filter_by_kwargs: Optional[dict] = None, order: str = 'id') -> FuelPriceModel:
         """
         Read current fuel prices (dates have UTC timezone).
 
@@ -80,7 +80,7 @@ class FuelPriceModel(PkModel):
         ).order_by(order)
 
     @classmethod
-    def read_provider_fuel_names(cls, provider: str = None) -> list:
+    def read_provider_fuel_names(cls, provider: Optional[str] = None) -> list:
         """
         Read fuel names for provider.
 

@@ -148,3 +148,6 @@ class ProductionConfig(BaseConfig):
     CACHE_REDIS_DB = 0
     CACHE_REDIS_URL = "redis://redis:6379/0"
     CACHE_DEFAULT_TIMEOUT = 500
+
+
+settings = BaseConfig()
