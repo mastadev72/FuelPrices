@@ -3,10 +3,8 @@ from logging.config import dictConfig
 from flask import Flask, render_template
 
 from .database import db
-from .settings import BaseConfig, ProductionConfig  # noqa: F401
+from .settings import settings
 from .extensions import extensions, extensions_with_db
-
-SettingsConfig = BaseConfig
 
 
 def import_models() -> None:
@@ -68,7 +66,7 @@ def register_commands(app: Flask) -> None:
 
 def configure_logger() -> None:
     """Configure logger here."""
-    debug = SettingsConfig.get_debug_status()
+    debug = settings.get_debug_status()
 
     dictConfig({
         "version": 1,
@@ -107,7 +105,7 @@ def configure_logger() -> None:
             }
         },
         "root": {
-            "level": "DEBUG" if debug else BaseConfig.get_log_level(),
+            "level": "DEBUG" if debug else settings.get_log_level(),
             "handlers": ["console"] if debug else ["console", "slack"],
         }
     })
@@ -122,7 +120,7 @@ def create_app() -> Flask:
     configure_logger()
 
     app = Flask(__name__)
-    app.config.from_object(SettingsConfig)
+    app.config.from_object(settings)
 
     register_extensions(app)
     register_blueprints(app)

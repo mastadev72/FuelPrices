@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime, timedelta
 
 from src.modules.main.models import FuelPriceModel
-from src.settings import BaseConfig
+from src.settings import settings
 
 
 def get_fuel_type_by_name(fuel_name: str) -> Optional[str]:
@@ -13,7 +13,7 @@ def get_fuel_type_by_name(fuel_name: str) -> Optional[str]:
     :param fuel_name: fuel name
     :return: fuel type / None
     """
-    fuel_types = BaseConfig.get_fuel_type_by_names()
+    fuel_types = settings.get_fuel_type_by_names()
 
     for fuel_type, fuel_list in fuel_types.items():
         if fuel_name in fuel_list:
@@ -34,7 +34,7 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     app_logger = logging.getLogger('app')  # get flask app logger
 
     # Name check
-    names_list = BaseConfig.get_fuel_names()
+    names_list = settings.get_fuel_names()
 
     if name not in names_list or name == "":
         app_logger.critical(f"{provider} fuel name check failed")
