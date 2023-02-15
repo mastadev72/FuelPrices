@@ -1,11 +1,13 @@
 import logging
 
 from src.extensions import db
-from src.modules.crontab.parsers.gulf_parser import parse_gulf_data
-from src.modules.crontab.parsers.rompetrol_parser import parse_rompetrol_data
-from src.modules.crontab.parsers.wissol_parser import parse_wissol_data
-from src.modules.crontab.parsers.lukoil_parser import parse_lukoil_data
-from src.modules.crontab.parsers.socar_parser import parse_socar_data
+from src.modules.crontab.parsers import (
+    parse_gulf_data,
+    parse_lukoil_data,
+    parse_rompetrol_data,
+    parse_socar_data,
+    parse_wissol_data,
+)
 from src.modules.crontab.services import parsed_data_confirmation, fill_db_with_parsed_data
 
 
