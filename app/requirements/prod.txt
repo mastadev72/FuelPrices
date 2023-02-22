@@ -37,8 +37,6 @@ environs==9.5.0
 
 # API stuff
 flask-restx==0.5.1
-flask-marshmallow==0.14.0
-marshmallow-sqlalchemy==0.28.1
 
 # Parsing stuff
 requests==2.28.1
