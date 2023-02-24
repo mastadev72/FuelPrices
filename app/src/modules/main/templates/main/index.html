@@ -86,7 +86,7 @@
                 </div>
                 {% for price_obj in gulf_prices %}
                     <div class="price_obj">
-                        <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                        <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
                         <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
                     </div>
                 {% endfor %}
@@ -109,7 +109,7 @@
                 </div>
                 {% for price_obj in wissol_prices %}
                     <div class="price_obj">
-                        <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                        <div> <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
                         <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
                     </div>
                 {% endfor %}
@@ -132,7 +132,7 @@
                 </div>
                 {% for price_obj in rompetrol_prices %}
                     <div class="price_obj">
-                        <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                        <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
                         <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
                     </div>
                 {% endfor %}
@@ -155,7 +155,7 @@
                 </div>
                 {% for price_obj in socar_prices %}
                     <div class="price_obj">
-                        <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                        <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
                         <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
                     </div>
                 {% endfor %}
@@ -178,7 +178,7 @@
                 </div>
                 {% for price_obj in lukoil_prices %}
                     <div class="price_obj">
-                        <div>{{ price_obj.name }} <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span></div>
+                        <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
                         <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
                     </div>
                 {% endfor %}
