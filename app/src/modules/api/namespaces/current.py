@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from flask_restx import Resource, Namespace, fields
 
 from src.modules.main.models import FuelPriceModel
