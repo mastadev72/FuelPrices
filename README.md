@@ -96,3 +96,8 @@ In general, we follow the "fork-and-pull" Git workflow
 🎉 Thank you for your contribution!
 
 Feel free to add yourself to the AUTHORS if your change(s) are significant (e.g new feature, critical bug fix ...).
+
+
+### License
+
+This project is licensed under the [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) license.
