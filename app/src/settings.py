@@ -74,6 +74,8 @@ class BaseConfig(object):
         'ევრო დიზელი', 'ევრო რეგულარი'
     ]
 
+    FUEL_PROVIDERS = ["Gulf", "Wissol", "Rompetrol", "Socar", "Lukoil"]
+
     CHART_TOTAL_DAYS = 10  # Analytics chart total display days
 
     @classmethod
