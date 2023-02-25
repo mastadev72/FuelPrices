@@ -1,7 +1,7 @@
 <div align="center">
 	<img src="./app/src/static/img/logo.png" width="140" title="Logo">
     <h1>Fuel Prices</h1>
-    <small>🚧 Building IOS client -> <a href="https://github.com/NickNaskida/FuelPrices-IOS">FuelPrices-IOS</a> 🚧 </small>
+    <small><a href="https://github.com/NickNaskida/FuelPrices-IOS">IOS Client</a></small>
 </div>
 
 ### 🗃 About Project
