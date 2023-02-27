@@ -111,7 +111,7 @@ def get_tab_chart_data() -> dict:
     return data
 
 
-def get_fuel_prices_by_type(type_alt: str) -> list:
+def get_fuel_prices_by_type(type_alt: str) -> FuelPriceModel:
     """
     Get all prices for certain fuel type.
 
