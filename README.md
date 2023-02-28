@@ -14,7 +14,7 @@ monitor, compare fuel prices, and use API to access current prices
 1. Clone the repository
 
     ```git
-    git clone https://github.com/NickNaskida/FuelPrices.git
+    git clone -b development https://github.com/NickNaskida/FuelPrices.git
     ```
 
 2. Create a copy of .env.example file in /app with name .env.dev
