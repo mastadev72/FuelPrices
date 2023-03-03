@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
 
 
 class BaseConfig(object):
@@ -152,4 +152,4 @@ class ProductionConfig(BaseConfig):
     CACHE_DEFAULT_TIMEOUT = 500
 
 
-settings = ProductionConfig()
+settings = BaseConfig()

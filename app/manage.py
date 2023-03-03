@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Create an application instance."""
-from src import create_app
+from src.app import create_app
 
 application = create_app()
 
