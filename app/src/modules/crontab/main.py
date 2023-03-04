@@ -7,6 +7,7 @@ from src.modules.crontab.parsers import (
     parse_rompetrol_data,
     parse_socar_data,
     parse_wissol_data,
+    parse_portal_data
 )
 from src.modules.crontab.services import parsed_data_confirmation, fill_db_with_parsed_data
 
@@ -26,7 +27,8 @@ def parse_data() -> None:
         'Rompetrol': parse_rompetrol_data,
         'Wissol': parse_wissol_data,
         'Lukoil': parse_lukoil_data,
-        'Socar': parse_socar_data
+        'Socar': parse_socar_data,
+        'Portal': parse_portal_data
     }
 
     try:

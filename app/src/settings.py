@@ -96,15 +96,24 @@ class BaseConfig(object):
         'ნანო დიზელი': 'diesel'
     }
 
+    PORTAL_FUEL_TYPES = {
+        'ევრო დიზელი': 'diesel_pm',
+        'ევრო რეგულარი': 'regular_pm',
+        'პრემიუმი': 'premium_pm',
+        'ეფექტური დიზელი': 'diesel',
+        'დიზელი': 'other'
+    }
+
     FUEL_TYPE_BY_NAMES = {
         'gulf': GULF_FUEL_TYPES,
         'rompetrol': ROMPETROL_FUEL_TYPES,
         'wissol': WISSOL_FUEL_TYPES,
         'lukoil': LUKOIL_FUEL_TYPES,
-        'socar': SOCAR_FUEL_TYPES
+        'socar': SOCAR_FUEL_TYPES,
+        'portal': PORTAL_FUEL_TYPES
     }
 
-    FUEL_PROVIDERS = ["Gulf", "Wissol", "Rompetrol", "Socar", "Lukoil"]
+    FUEL_PROVIDERS = ["Gulf", "Wissol", "Rompetrol", "Socar", "Lukoil", "Portal"]
 
     CHART_TOTAL_DAYS = 10  # Analytics chart total display days
 

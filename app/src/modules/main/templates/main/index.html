@@ -72,6 +72,9 @@
             <button class="provider_menu_butt" data-tab="4">
                 <img src="{{ static_url_for('static', filename='img/lukoil_logo.png') }}" alt="Lukoil logo"> Lukoil
             </button>
+            <button class="provider_menu_butt" data-tab="5">
+                <img src="{{ static_url_for('static', filename='img/portal_logo.png') }}" alt="Portal logo"> Portal
+            </button>
         </nav>
 
         <div class="provider_tab provider_tab_active">
@@ -187,6 +190,29 @@
             </div>
             <div class="provider_stats">
                 <div class="chart" id="lukoil-chart"></div>
+            </div>
+        </div>
+        <div class="provider_tab">
+            <div class="provider_prices">
+                <div class="provider_prices_header">
+                    <div>
+                        {{ card_logo_img("Portal") }}
+                    </div>
+                    <div class="provider_prices_info">
+                        <h4>Portal</h4>
+                        <hr>
+                        {{ portal_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                    </div>
+                </div>
+                {% for price_obj in portal_prices %}
+                    <div class="price_obj">
+                        <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                        <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="provider_stats">
+                <div class="chart" id="portal-chart"></div>
             </div>
         </div>
     </div>

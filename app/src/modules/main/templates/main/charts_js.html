@@ -96,13 +96,13 @@
                 },
                 export: {
                     csv: {
-                     filename: "gulf_prices",
+                     filename: "wissol_prices",
                     },
                     svg: {
-                      filename: "gulf_prices",
+                      filename: "wissol_prices",
                     },
                     png: {
-                      filename: "gulf_prices",
+                      filename: "wissol_prices",
                     }
                 },
                 autoSelected: 'zoom'
@@ -163,13 +163,13 @@
                 },
                 export: {
                     csv: {
-                     filename: "gulf_prices",
+                     filename: "rompetrol_prices",
                     },
                     svg: {
-                      filename: "gulf_prices",
+                      filename: "rompetrol_prices",
                     },
                     png: {
-                      filename: "gulf_prices",
+                      filename: "rompetrol_prices",
                     }
                 },
                 autoSelected: 'zoom'
@@ -230,13 +230,13 @@
                 },
                 export: {
                     csv: {
-                     filename: "gulf_prices",
+                     filename: "socar_prices",
                     },
                     svg: {
-                      filename: "gulf_prices",
+                      filename: "socar_prices",
                     },
                     png: {
-                      filename: "gulf_prices",
+                      filename: "socar_prices",
                     }
                 },
                 autoSelected: 'zoom'
@@ -297,13 +297,13 @@
                 },
                 export: {
                     csv: {
-                     filename: "gulf_prices",
+                     filename: "lukoil_prices",
                     },
                     svg: {
-                      filename: "gulf_prices",
+                      filename: "lukoil_prices",
                     },
                     png: {
-                      filename: "gulf_prices",
+                      filename: "lukoil_prices",
                     }
                 },
                 autoSelected: 'zoom'
@@ -337,15 +337,83 @@
         },
     };
 
+    let portal_chart_options = {
+        series: [
+            {% for name, prices in portal_chart_prices %}
+                {
+                    name: "{{ name }}",
+                    data: {{ prices|safe }}
+                },
+            {% endfor %}
+        ],
+        chart: {
+            height: chart_height,
+            type: 'line',
+            fontFamily: 'Rubik, sans-serif',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: false,
+                    reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    customIcons: []
+                },
+                export: {
+                    csv: {
+                     filename: "portal_prices",
+                    },
+                    svg: {
+                      filename: "portal_prices",
+                    },
+                    png: {
+                      filename: "portal_prices",
+                    }
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 3,
+            dashArray: 0,
+        },
+        xaxis: {
+            type: 'date',
+            categories: {{ chart_dates|safe }}
+        },
+        title: {
+            text: 'Portal',
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/YY'
+            },
+        },
+    };
 
     let gulf_chart = new ApexCharts(document.getElementById("gulf-chart"), gulf_chart_options);
     let wissol_chart = new ApexCharts(document.getElementById("rompetrol-chart"), wissol_chart_options);
     let rompetrol_chart = new ApexCharts(document.getElementById("wissol-chart"), rompetrol_chart_options);
     let socar_chart = new ApexCharts(document.getElementById("socar-chart"), socar_chart_options);
     let lukoil_chart = new ApexCharts(document.getElementById("lukoil-chart"), lukoil_chart_options);
+    let portal_chart = new ApexCharts(document.getElementById("portal-chart"), portal_chart_options);
     gulf_chart.render();
     wissol_chart.render();
     rompetrol_chart.render();
     socar_chart.render();
     lukoil_chart.render();
+    portal_chart.render();
 </script>

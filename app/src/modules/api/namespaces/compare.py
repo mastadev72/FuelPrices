@@ -11,16 +11,16 @@ compare_sr = api.model('FuelTypes', {
 })
 
 
-@api.route("/<string:fuel_type>")
+@api.route("/<string:type_alt>")
 @api.doc(params={
-    'fuel_type': f'Fuel alternative type: {", ".join([i[0] for i in settings.FUEL_TYPES])}'
+    'type_alt': f'Fuel alternative type: {", ".join([i[0] for i in settings.FUEL_TYPES])}'
 })
 class Compare(Resource):
     """Compare fuel type prices API endpoint."""
 
     @api.doc('get_fuel_type_prices')
     @api.marshal_list_with(compare_sr)
-    def get(self, fuel_type):
+    def get(self, type_alt):
         """
         Get fuel type prices.
 
@@ -28,9 +28,9 @@ class Compare(Resource):
         """
         fuel_types = [i[0] for i in settings.FUEL_TYPES]
 
-        if fuel_type not in fuel_types:
-            api.abort(404, f"Fuel type '{fuel_type}' not found. Available fuel types: {', '.join(fuel_types)}")
+        if type_alt not in fuel_types:
+            api.abort(404, f"Fuel type '{type_alt}' not found. Available fuel types: {', '.join(fuel_types)}")
 
-        fuel_prices = get_fuel_prices_by_type(fuel_type).all()
+        fuel_prices = get_fuel_prices_by_type(type_alt).all()
 
         return fuel_prices
