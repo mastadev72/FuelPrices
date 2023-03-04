@@ -12,6 +12,9 @@ def request_url(url: str, headers: Optional[dict] = None) -> requests.Response:
     :param headers: HTTP headers
     :return: Response object
     """
+    # PORTAL SSL error workaround
+    requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS = 'ALL:@SECLEVEL=1'  # type: ignore
+
     session = requests.Session()
     retry = Retry(connect=3, backoff_factor=0.5)
     adapter = requests.adapters.HTTPAdapter(max_retries=retry)
