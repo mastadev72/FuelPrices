@@ -2,6 +2,7 @@ from flask_restx import Resource, Namespace, fields
 
 from src.modules.main.models import FuelPriceModel
 from src.settings import settings
+from src.extensions import cache
 
 api = Namespace('Current Prices')
 
@@ -29,6 +30,7 @@ class Current(Resource):
 
     @api.doc('get_all_current_prices')
     @api.marshal_list_with(current_sr)
+    @cache.cached(timeout=3 * 60)
     def get(self):
         """
         Get all current prices.
@@ -61,6 +63,7 @@ class ProviderCurrent(Resource):
 
     @api.doc('get_provider_current_prices')
     @api.marshal_list_with(current_sr)
+    @cache.cached(timeout=3 * 60)
     def get(self, provider):
         """
         Get all provider prices.

@@ -9,9 +9,10 @@
 
 {% block content %}
     <div class="main_info">
-        <div>
-            <center><h3>საუკეთესო ფასები</h3></center>
+        <div class="best_prices_wrapper">
+            <h3>საუკეთესო ფასები</h3>
             <br>
+            <small>*-იანი პრემიუმ ხარისხის მაჩვენებელია</small>
             <div class="best_prices">
                 {% for name, price_obj in lowest_current_prices %}
                     <div class="best_price_card">
@@ -36,6 +37,7 @@
                     {{ compare_form.type_alt(class_="form-control", id="CompareFormSelect") }}
                     <button class="" type="submit">შედარება</button>
                 </form>
+                <small>*-იანი პრემიუმ ხარისხის მაჩვენებელია</small>
             </div>
 
             <div class="compare_body">
@@ -185,6 +187,96 @@
             </div>
             <div class="provider_stats">
                 <div class="chart" id="lukoil-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion" id="type_table_accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                    საწვავის ტიპების ცხრილი
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                 data-bs-parent="#type_table_accordion">
+                <div class="accordion-body">
+                    <table class="table">
+                        <tr>
+                            <th>დასახელება ვებსაიტზე</th>
+                            <th>Gulf</th>
+                            <th>Rompetrol</th>
+                            <th>Wissol</th>
+                            <th>Lukoil</th>
+                            <th>Socar</th>
+                            <th>Portal</th>
+                        </tr>
+                        <tr>
+                            <td>ევრო დიზელი*</td>
+                            <td>G-Force ევრო დიზელი</td>
+                            <td>Efix ევრო დიზელი</td>
+                            <td>ეკო დიზელი</td>
+                            <td>ევრო დიზელი</td>
+                            <td>ნანო ევრო დიზელი</td>
+                            <td>ევრო დიზელი</td>
+                        </tr>
+                        <tr>
+                            <td>ევრო რეგულარი*</td>
+                            <td>G-Force ევრო რეგულარი</td>
+                            <td>ევრო რეგულარი</td>
+                            <td>ევრო რეგულარი</td>
+                            <td>ევრო რეგულარი</td>
+                            <td>ნანო ევრო რეგულარი</td>
+                            <td>ევრო რეგულარი</td>
+                        </tr>
+                        <tr>
+                            <td>პრემიუმი*</td>
+                            <td>G-Force პრემიუმი</td>
+                            <td>Efix ევრო პრემიუმი</td>
+                            <td>ეკო პრემიუმი</td>
+                            <td>პრემიუმ ავანგარდი</td>
+                            <td>ნანო პრემიუმი</td>
+                            <td>პრემიუმი</td>
+                        </tr>
+                        <tr>
+                            <td>სუპერი*</td>
+                            <td>G-Force სუპერი</td>
+                            <td>Efix სუპერი</td>
+                            <td>ეკო სუპერი</td>
+                            <td>სუპერ ეკტო</td>
+                            <td>ნანო სუპერი</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>დიზელი</td>
+                            <td>ევრო დიზელი</td>
+                            <td>ევრო დიზელი</td>
+                            <td>ევრო დიზელი</td>
+                            <td>—</td>
+                            <td>ნანო დიზელი</td>
+                            <td>ეფექტური დიზელი</td>
+                        </tr>
+                        <tr>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>დიზელ ენერჯი</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>დიზელი</td>
+                        </tr>
+                        <tr>
+                            <td>რეგულარი</td>
+                            <td>ევრო რეგულარი</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

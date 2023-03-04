@@ -1,5 +1,6 @@
 from flask_restx import Resource, Namespace, fields
 
+from src.extensions import cache
 from src.modules.main.services import get_lowest_current_prices
 
 api = Namespace('Lowest Deals')
@@ -17,6 +18,7 @@ class Lowest(Resource):
 
     @api.doc('get_lowest_prices')
     @api.marshal_with(lowest_sr)
+    @cache.cached(timeout=3 * 60)
     def get(self):
         """
         Get lowest prices for each fuel type.

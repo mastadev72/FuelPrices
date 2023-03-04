@@ -49,30 +49,60 @@ class BaseConfig(object):
     FUEL_TYPES = (
         ('diesel', "დიზელი"),
         ('regular', "რეგულარი"),
-        ('diesel_alt', "ევრო დიზელი*"),
-        ('regular_alt', "ევრო რეგულარი*"),
-        ('premium_alt', "პრემიუმი"),
-        ('super_alt', "სუპერი")
+        ('diesel_pm', "ევრო დიზელი*"),
+        ('regular_pm', "ევრო რეგულარი*"),
+        ('premium_pm', "პრემიუმი*"),
+        ('super_pm', "სუპერი*")
     )
 
-    FUEL_TYPE_BY_NAMES = {
-        'other': ['დიზელ ენერჯი'],
-        'diesel': ['ევრო დიზელი'],
-        'regular': ['ევრო რეგულარი'],
-        'diesel_alt': ['G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი', 'ნანო დიზელი'],
-        'regular_alt': ['G-Force ევრო რეგულარი'],
-        'premium_alt': ['G-Force პრემიუმი', 'Efix ევრო პრემიუმი', 'ეკო პრემიუმი', 'პრემიუმ ავანგარდი', 'ნანო პრემიუმი'],
-        'super_alt': ['G-Force სუპერი', 'Efix სუპერი', 'ეკო სუპერი', 'სუპერ ეკტო', 'ნანო სუპერი']
+    GULF_FUEL_TYPES = {
+        'G-Force ევრო დიზელი': 'diesel_pm',
+        'G-Force ევრო რეგულარი': 'regular_pm',
+        'G-Force პრემიუმი': 'premium_pm',
+        'G-Force სუპერი': 'super_pm',
+        'ევრო დიზელი': 'diesel',
+        'ევრო რეგულარი': 'regular'
     }
 
-    FUEL_NAMES = [
-        'G-Force ევრო რეგულარი', 'G-Force ევრო დიზელი', 'G-Force პრემიუმი', 'G-Force სუპერი',
-        'ეკო სუპერი', 'ეკო დიზელი', 'ეკო პრემიუმი', 'დიზელ ენერჯი',
-        'Efix ევრო დიზელი', 'Efix ევრო პრემიუმი', 'Efix სუპერი',
-        'ნანო დიზელი', 'ნანო პრემიუმი', 'ნანო სუპერი',
-        'პრემიუმ ავანგარდი', 'სუპერ ეკტო',
-        'ევრო დიზელი', 'ევრო რეგულარი'
-    ]
+    ROMPETROL_FUEL_TYPES = {
+        'Efix ევრო დიზელი': 'diesel_pm',
+        'ევრო რეგულარი': 'regular_pm',
+        'Efix ევრო პრემიუმი': 'premium_pm',
+        'Efix სუპერი': 'super_pm',
+        'ევრო დიზელი': 'diesel'
+    }
+
+    WISSOL_FUEL_TYPES = {
+        'ეკო დიზელი': 'diesel_pm',
+        'ევრო რეგულარი': 'regular_pm',
+        'ეკო პრემიუმი': 'premium_pm',
+        'ეკო სუპერი': 'super_pm',
+        'ევრო დიზელი': 'diesel',
+        'დიზელ ენერჯი': 'other'
+    }
+
+    LUKOIL_FUEL_TYPES = {
+        'ევრო დიზელი': 'diesel_pm',
+        'ევრო რეგულარი': 'regular_pm',
+        'პრემიუმ ავანგარდი': 'premium_pm',
+        'სუპერ ეკტო': 'super_pm'
+    }
+
+    SOCAR_FUEL_TYPES = {
+        'ნანო ევრო დიზელი': 'diesel_pm',
+        'ნანო ევრო რეგულარი': 'regular_pm',
+        'ნანო პრემიუმი': 'premium_pm',
+        'ნანო სუპერი': 'super_pm',
+        'ნანო დიზელი': 'diesel'
+    }
+
+    FUEL_TYPE_BY_NAMES = {
+        'gulf': GULF_FUEL_TYPES,
+        'rompetrol': ROMPETROL_FUEL_TYPES,
+        'wissol': WISSOL_FUEL_TYPES,
+        'lukoil': LUKOIL_FUEL_TYPES,
+        'socar': SOCAR_FUEL_TYPES
+    }
 
     FUEL_PROVIDERS = ["Gulf", "Wissol", "Rompetrol", "Socar", "Lukoil"]
 
@@ -104,11 +134,6 @@ class BaseConfig(object):
         return cls.LOG_LEVEL
 
     @classmethod
-    def get_fuel_names(cls) -> list:
-        """Get fuel names."""
-        return cls.FUEL_NAMES
-
-    @classmethod
     def get_fuel_types(cls) -> tuple:
         """Get supported fuel types."""
         return cls.FUEL_TYPES
@@ -117,6 +142,16 @@ class BaseConfig(object):
     def get_fuel_type_by_names(cls) -> dict:
         """Get fuel type by name."""
         return cls.FUEL_TYPE_BY_NAMES
+
+    @classmethod
+    def get_fuel_names(cls) -> set:
+        """Get fuel names."""
+        fuel_names: list = []
+
+        for obj in cls.FUEL_TYPE_BY_NAMES.values():
+            fuel_names.extend(obj.keys())
+
+        return set(fuel_names)
 
 
 class ProductionConfig(BaseConfig):
