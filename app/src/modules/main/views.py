@@ -35,6 +35,7 @@ def index():
     compare_form = ComparePriceForm()
 
     if compare_form.validate_on_submit():
+        print(compare_form.type_alt.data)
         compare_data = get_fuel_prices_by_type(compare_form.type_alt.data)
         return render_template('index.html', compare_form=compare_form, compare_data=compare_data,
                                lowest_current_prices=lowest_current_prices, **tab_data, **tab_chart_data)

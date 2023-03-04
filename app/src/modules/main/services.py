@@ -14,10 +14,7 @@ def compare_form_submitted() -> bool:
 
     :return: True / False
     """
-    if request.method == 'GET':
-        return False
-
-    return True
+    return request.method != 'GET'
 
 
 def get_tab_data() -> dict:
@@ -31,7 +28,8 @@ def get_tab_data() -> dict:
         'wissol_prices': FuelPriceModel.read_current_prices({'provider': 'Wissol'}),
         'rompetrol_prices': FuelPriceModel.read_current_prices({'provider': 'Rompetrol'}),
         'socar_prices': FuelPriceModel.read_current_prices({'provider': 'Socar'}),
-        'lukoil_prices': FuelPriceModel.read_current_prices({'provider': 'Lukoil'})
+        'lukoil_prices': FuelPriceModel.read_current_prices({'provider': 'Lukoil'}),
+        'portal_prices': FuelPriceModel.read_current_prices({'provider': 'Portal'})
     }
 
     return tab_data
@@ -98,6 +96,7 @@ def get_tab_chart_data() -> dict:
     rompetrol_chart_prices = get_provider_prices_in_date_sequence('Rompetrol', dates_list).items()
     socar_chart_prices = get_provider_prices_in_date_sequence('Socar', dates_list).items()
     lukoil_chart_prices = get_provider_prices_in_date_sequence('Lukoil', dates_list).items()
+    portal_chart_prices = get_provider_prices_in_date_sequence('Portal', dates_list).items()
 
     data = {
         'gulf_chart_prices': gulf_chart_prices,
@@ -105,6 +104,7 @@ def get_tab_chart_data() -> dict:
         'rompetrol_chart_prices': rompetrol_chart_prices,
         'socar_chart_prices': socar_chart_prices,
         'lukoil_chart_prices': lukoil_chart_prices,
+        'portal_chart_prices': portal_chart_prices,
         'chart_dates': [date.strftime("%d-%m-%Y") for date in dates_list]
     }
 

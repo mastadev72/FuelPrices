@@ -57,7 +57,7 @@ class Current(Resource):
 
 @api.route("/<string:provider>")
 @api.response(404, 'Provider not found')
-@api.doc(params={'provider': 'Provider name (gulf, wissol, rompetrol, socar, lukoil)'})
+@api.doc(params={'provider': f'Provider name ({", ".join(settings.FUEL_PROVIDERS)})'})
 class ProviderCurrent(Resource):
     """Provider current prices API endpoint."""
 
