@@ -9,9 +9,10 @@
 
 {% block content %}
     <div class="main_info">
-        <div>
-            <center><h3>საუკეთესო ფასები</h3></center>
+        <div class="best_prices_wrapper">
+            <h3>საუკეთესო ფასები</h3>
             <br>
+            <small>*-იანი პრემიუმ ხარისხის მაჩვენებელია</small>
             <div class="best_prices">
                 {% for name, price_obj in lowest_current_prices %}
                     <div class="best_price_card">
@@ -36,6 +37,7 @@
                     {{ compare_form.type_alt(class_="form-control", id="CompareFormSelect") }}
                     <button class="" type="submit">შედარება</button>
                 </form>
+                <small>*-იანი პრემიუმ ხარისხის მაჩვენებელია</small>
             </div>
 
             <div class="compare_body">

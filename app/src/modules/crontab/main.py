@@ -34,7 +34,7 @@ def parse_data() -> None:
             for fuel_name, fuel_price in provider_parse_func().items():
                 # check if data is valid
                 if not parsed_data_confirmation(fuel_name, fuel_price, provider):
-                    app_logger.critical("Fail during price data parsing ")
+                    app_logger.critical(f"Fail during {provider} price data parsing, errored fuel: {fuel_name}")
                     db.session.rollback()  # rollback
                     return
 

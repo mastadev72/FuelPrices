@@ -6,20 +6,18 @@ from src.modules.main.models import FuelPriceModel
 from src.settings import settings
 
 
-def get_fuel_type_by_name(fuel_name: str) -> Optional[str]:
+def get_fuel_type_by_name(fuel_name: str, provider: str) -> Optional[str]:
     """
     Get fuel type by name.
 
     :param fuel_name: fuel name
+    :param provider: fuel provider
     :return: fuel type / None
     """
     fuel_types = settings.get_fuel_type_by_names()
+    provider_fuel_types = fuel_types.get(provider.lower())
 
-    for fuel_type, fuel_list in fuel_types.items():
-        if fuel_name in fuel_list:
-            return fuel_type
-
-    return None
+    return provider_fuel_types.get(fuel_name)
 
 
 def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
@@ -37,7 +35,7 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
     names_list = settings.get_fuel_names()
 
     if name not in names_list or name == "":
-        app_logger.critical(f"{provider} fuel name check failed")
+        app_logger.critical(f"{provider} ({name}) name check failed")
         return False
 
     # Price check
@@ -48,11 +46,11 @@ def parsed_data_confirmation(name: str, price: str, provider: str) -> bool:
         return False
 
     # Fuel type check
-    if get_fuel_type_by_name(name) is None:
+    if get_fuel_type_by_name(name, provider) is None:
         app_logger.critical(f"{provider} fuel type not found")
         return False
 
-    app_logger.info(f"{provider}, {name}, {price} - parsing confirm.")
+    app_logger.info(f"{provider}, {name}, {price} - data confirmed.")
     return True
 
 
@@ -66,7 +64,7 @@ def fill_db_with_parsed_data(name: str, price: str, provider: str) -> None:
     :return: None
     """
     fuel_price_model = FuelPriceModel()
-    fuel_type = get_fuel_type_by_name(name)
+    fuel_type = get_fuel_type_by_name(name, provider)
     fuel_price_objects = fuel_price_model.query.filter_by(
         provider=provider, name=name, type_alt=fuel_type, date=datetime.utcnow().date()
     )
