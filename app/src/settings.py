@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
 
 
 class BaseConfig(object):
@@ -104,16 +104,6 @@ class BaseConfig(object):
         'socar': SOCAR_FUEL_TYPES
     }
 
-    # FUEL_TYPE_BY_NAMES = {
-    #     'other': ['დიზელ ენერჯი'],
-    #     'diesel': ['ევრო დიზელი'],
-    #     'regular': ['ევრო რეგულარი'],
-    #     'diesel_alt': ['G-Force ევრო დიზელი', 'Efix ევრო დიზელი', 'ეკო დიზელი', 'ნანო დიზელი'],
-    #     'regular_alt': ['G-Force ევრო რეგულარი'],
-    #     'premium_alt': ['G-Force პრემიუმი', 'Efix ევრო პრემიუმი', 'ეკო პრემიუმი', 'პრემიუმ ავანგარდი', 'ნანო პრემიუმი'],
-    #     'super_alt': ['G-Force სუპერი', 'Efix სუპერი', 'ეკო სუპერი', 'სუპერ ეკტო', 'ნანო სუპერი']
-    # }
-
     FUEL_PROVIDERS = ["Gulf", "Wissol", "Rompetrol", "Socar", "Lukoil"]
 
     CHART_TOTAL_DAYS = 10  # Analytics chart total display days
@@ -156,7 +146,7 @@ class BaseConfig(object):
     @classmethod
     def get_fuel_names(cls) -> set:
         """Get fuel names."""
-        fuel_names = []
+        fuel_names: list = []
 
         for obj in cls.FUEL_TYPE_BY_NAMES.values():
             fuel_names.extend(obj.keys())
@@ -197,4 +187,4 @@ class ProductionConfig(BaseConfig):
     CACHE_DEFAULT_TIMEOUT = 500
 
 
-settings = BaseConfig()
+settings = ProductionConfig()

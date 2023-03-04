@@ -17,6 +17,9 @@ def get_fuel_type_by_name(fuel_name: str, provider: str) -> Optional[str]:
     fuel_types = settings.get_fuel_type_by_names()
     provider_fuel_types = fuel_types.get(provider.lower())
 
+    if not provider_fuel_types:
+        return None
+
     return provider_fuel_types.get(fuel_name)
 
 

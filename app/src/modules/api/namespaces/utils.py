@@ -17,7 +17,7 @@ class FuelTypes(Resource):
 
     @api.doc('get_all_fuel_types')
     @api.marshal_list_with(fuel_types_sr)
-    @cache.cached(timeout=10*60)
+    @cache.cached(timeout=10 * 60)
     def get(self):
         """
         Get all fuel types.
