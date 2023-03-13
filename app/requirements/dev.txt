@@ -26,3 +26,4 @@ tox==3.25.1
 
 # mypy
 sqlalchemy2-stubs==0.0.2a25
+types-pytz==2022.7.1.2
