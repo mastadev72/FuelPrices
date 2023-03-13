@@ -156,16 +156,16 @@ header img {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    height: 80px;
     padding: 5px 10px;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    height: 80px;
+    background-color: #fff;
+    box-shadow: rgba(88, 102, 126, 0.08) 0px 4px 7px, rgba(88, 102, 126, 0.12) 0px 1px 2px;
     animation-name: marqueeLine;
     animation-duration: 60s;
     animation-timing-function: linear;
     animation-delay: 0s;
     animation-iteration-count: infinite;
-
 }
 
 .running_card_logo img {

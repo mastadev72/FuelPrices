@@ -106,16 +106,14 @@
                         {{ '%0.2f'|format(price_obj.price) }} &#8382;
                         <span
                                 class="badge"
-                                style="background-color: {% if price_obj.change_rate > 0 %}#ea3943{% elif price_obj.change_rate <= 0 %}#16c784{% endif %}"
+                                style="color: {% if price_obj.change_rate > 0 %}#ea3943{% elif price_obj.change_rate < 0 %}#16c784{% endif %}"
                         >
                                 {% if price_obj.change_rate > 0 %}
                                     <i class="fa-solid fa-arrow-up"></i> {{ '%0.2f'|format(price_obj.change_rate) }}
                                     &#8382;
                                 {% elif price_obj.change_rate < 0 %}
-                                    <i class="fa-solid fa-arrow-down"></i> {{ '%0.2f'|format(price_obj.change_rate) }}
+                                    <i class="fa-solid fa-arrow-down"></i> {{ '%0.2f'|format(price_obj.change_rate | abs) }}
                                     &#8382;
-                                {% else %}
-                                    0.00
                                 {% endif %}
                             </span>
                     </div>
