@@ -86,7 +86,7 @@
                     <div class="provider_prices_info">
                         <h4>Gulf</h4>
                         <hr>
-                        {{ gulf_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ gulf_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in gulf_prices %}
@@ -109,7 +109,7 @@
                     <div class="provider_prices_info">
                         <h4>Wissol</h4>
                         <hr>
-                        {{ wissol_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ wissol_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in wissol_prices %}
@@ -132,7 +132,7 @@
                     <div class="provider_prices_info">
                         <h4>Rompetrol</h4>
                         <hr>
-                        {{ rompetrol_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ rompetrol_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in rompetrol_prices %}
@@ -155,7 +155,7 @@
                     <div class="provider_prices_info">
                         <h4>Socar</h4>
                         <hr>
-                        {{ socar_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ socar_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in socar_prices %}
@@ -178,7 +178,7 @@
                     <div class="provider_prices_info">
                         <h4>Lukoil</h4>
                         <hr>
-                        {{ lukoil_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ lukoil_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in lukoil_prices %}
@@ -201,7 +201,7 @@
                     <div class="provider_prices_info">
                         <h4>Portal</h4>
                         <hr>
-                        {{ portal_prices[0].last_updated.strftime('%H:%M %d-%b-%Y') }}
+                        {{ portal_prices[0].last_updated|datetimefilter }}
                     </div>
                 </div>
                 {% for price_obj in portal_prices %}

@@ -64,6 +64,12 @@ def register_commands(app: Flask) -> None:
     app.cli.add_command(fill_db)
 
 
+def register_formatters(app: Flask) -> None:
+    """Register formatters here."""
+    from src.formatters.dtime import datetimefilter
+    app.jinja_env.filters["datetimefilter"] = datetimefilter
+
+
 def configure_logger() -> None:
     """Configure logger here."""
     debug = settings.get_debug_status()
@@ -127,5 +133,6 @@ def create_app() -> Flask:
     register_error_handlers(app)
     register_shell_context(app)
     register_commands(app)
+    register_formatters(app)
 
     return app
