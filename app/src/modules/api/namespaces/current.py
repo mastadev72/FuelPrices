@@ -1,6 +1,7 @@
 from flask_restx import Resource, Namespace, fields
 
 from src.modules.main.models import FuelPriceModel
+from src.formatters.dtime import datetimefilter
 from src.settings import settings
 from src.extensions import cache
 
@@ -38,10 +39,10 @@ class Current(Resource):
         :return: json with all current prices data
         """
         providers = settings.FUEL_PROVIDERS
-        objs = FuelPriceModel.read_current_prices().all()
+        fuel_objs = FuelPriceModel.read_current_prices().all()
 
         # Format last updated date
-        last_updated = objs[0].last_updated.strftime('%H:%M %d-%b-%Y')
+        last_updated = datetimefilter(fuel_objs[0].last_updated)
 
         data = []
 
@@ -49,7 +50,7 @@ class Current(Resource):
             data.append({
                 'provider': provider,
                 'last_updated': last_updated,
-                'fuel': [i for i in objs if i.provider == provider]
+                'fuel': [i for i in fuel_objs if i.provider == provider]
             })
 
         return data
@@ -74,19 +75,19 @@ class ProviderCurrent(Resource):
         if provider.lower() not in ['gulf', 'wissol', 'rompetrol', 'socar', 'lukoil']:
             return 'Invalid provider name.', 409
 
-        fuel_objects = FuelPriceModel.read_current_prices(
+        fuel_objs = FuelPriceModel.read_current_prices(
             {
                 'provider': provider.capitalize()
             }
         ).all()
 
         # Format last updated date
-        last_updated = fuel_objects[0].last_updated.strftime('%H:%M %d-%b-%Y')
+        last_updated = datetimefilter(fuel_objs[0].last_updated)
 
         data = {
             'provider': provider.capitalize(),
             'last_updated': last_updated,
-            'fuel': [i for i in fuel_objects]
+            'fuel': [i for i in fuel_objs]
         }
 
         return data
