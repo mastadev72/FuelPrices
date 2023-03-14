@@ -462,7 +462,7 @@ footer ul {
 .provider_tab {
     display: none;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
 }
 
@@ -517,12 +517,16 @@ footer ul {
     background-color: #F0F2F5;
 }
 
+.provider_prices_right {
+    min-width: 260px;
+}
+
 .price_obj {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 2px 0;
     gap: 5px;
+    padding: 2px 0;
 }
 
 .price_obj span {
@@ -534,10 +538,18 @@ footer ul {
 .provider_stats {
     width: 100%;
     min-height: 340px;
-    padding: 10px;
-    border: 1px solid #DEE2E6;
-    border-radius: 5px;
-    margin: 20px 0;
+}
+
+
+#type_table_accordion {
+    margin-top: 20px;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: rgba(88, 102, 126, 0.08) 0px 4px 7px, rgba(88, 102, 126, 0.12) 0px 1px 2px !important;
+}
+
+#type_table_accordion .accordion-item {
+    border: none !important;
 }
 
 /*=======About=========*/
