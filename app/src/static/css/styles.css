@@ -58,7 +58,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #1075EF;
+    background-color: #0D63E4;
     border-radius: 20px;
     background-clip: content-box;
     transition: all 0.2s ease;
@@ -202,7 +202,7 @@ header img {
 
 .running_card_price .badge {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 @keyframes marqueeLine {
@@ -217,7 +217,7 @@ header img {
 
 /*==========main===========*/
 main {
-    padding: 40px 20px;
+    padding: 30px 0;
 }
 
 .content_title {
@@ -264,35 +264,108 @@ footer ul {
 /*=============index=============*/
 .main_info {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 40px;
+}
+
+.main_info i {
+    color: #0D63E4;
+    margin-right: 10px;
+}
+
+.main_info small {
+    color: #58667E;
+}
+
+.best_prices_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35%;
+    min-width: 400px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: rgba(88, 102, 126, 0.08) 0px 4px 7px, rgba(88, 102, 126, 0.12) 0px 1px 2px;
+}
+
+.best_price_item {
+    padding: 4px 0;
+    font-size: 16px;
+}
+
+.best_price_item span {
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    color: #0D63E4;
+}
+
+.best_price_item img {
+    height: 20px;
+    width: auto;
+}
+
+/*============Compare=============*/
+.compare {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: rgba(88, 102, 126, 0.08) 0px 4px 7px, rgba(88, 102, 126, 0.12) 0px 1px 2px;
+}
+
+.compare_body {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 20px;
 }
 
-.best_prices_wrapper {
+.compare_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.compare_form form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
-.best_prices {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.compare_form form select {
+    width: 200px;
 }
 
-.best_price_card {
-    min-width: 340px;
-    padding: 10px 20px;
-    border: 1px solid #DEE2E6;
-    border-radius: 5px;
+.compare_form form button {
+    height: 100%;
+    width: 200px;
+    background-color: #1075ef;
+    color: #fff;
+    padding: 3px 8px;
+    border: none;
+    border-radius: 0.375rem;
     margin-top: 10px;
 }
 
-.best_price_card img {
-    height: 25px;
-    width: auto;
+.compare_chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.compare_chart img {
+    width: 100px;
+}
+
+/*============Provider=============*/
 
 .provider_nav {
     display: flex;
@@ -414,50 +487,6 @@ footer ul {
     border: 1px solid #DEE2E6;
     border-radius: 5px;
     margin: 20px 0;
-}
-
-/*============Compare=============*/
-.compare_header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.compare_header form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    width: 500px;
-    margin-bottom: 5px;
-}
-
-.compare_header form select {
-    width: 200px;
-}
-
-.compare_header form button {
-    height: 100%;
-    background-color: #1075ef;
-    color: #fff;
-    padding: 6px 8px;
-    border: none;
-    border-radius: 0.375rem;
-}
-
-.compare_body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    min-height: 180px;
-}
-
-.compare_body img {
-    width: 100px;
 }
 
 /*=======About=========*/
