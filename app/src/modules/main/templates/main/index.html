@@ -56,8 +56,7 @@
     <section class="all_prices">
         <div class="provider_nav_card">
             <div class="provider_nav_card_header">
-                <span class="provider_nav_icon" style="background-color: #0D63E4"><i class="fa-solid fa-gas-pump"></i></span>
-                <h5>ყველა ფასი</h5>
+                <h5><i class="fa-solid fa-gas-pump"></i> ყველა ფასი</h5>
             </div>
             <hr>
             <nav class="provider_nav">
@@ -131,22 +130,27 @@
             </div>
             <div class="provider_tab">
                 <div class="provider_prices">
-                    <div class="provider_prices_header">
-                        <div>
-                            {{ card_logo_img("Wissol") }}
+                    <div class="provider_prices_left">
+                        <div class="provider_prices_left__header">
+                            <div>
+                                {{ card_logo_img("Wissol") }}
+                            </div>
+                            <div class="provider_prices_info">
+                                <h4>Wissol</h4>
+                                <hr>
+                                {{ wissol_prices[0].last_updated|datetimefilter }}
+                            </div>
                         </div>
-                        <div class="provider_prices_info">
-                            <h4>Wissol</h4>
-                            <hr>
-                            {{ wissol_prices[0].last_updated|datetimefilter }}
-                        </div>
+                        <small>საწვავის ფასები ახლდება ყოველ 1 საათში ერთხელ და ექვემდებარემა ცვლილებას.</small>
                     </div>
-                    {% for price_obj in wissol_prices %}
-                        <div class="price_obj">
-                            <div> <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
-                            <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
-                        </div>
-                    {% endfor %}
+                    <div class="provider_prices_right">
+                        {% for price_obj in wissol_prices %}
+                            <div class="price_obj">
+                                <div> <span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                                <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="provider_stats">
                     <div class="chart" id="rompetrol-chart"></div>
@@ -154,22 +158,27 @@
             </div>
             <div class="provider_tab">
                 <div class="provider_prices">
-                    <div class="provider_prices_header">
-                        <div>
-                            {{ card_logo_img("Rompetrol") }}
+                    <div class="provider_prices_left">
+                        <div class="provider_prices_left__header">
+                            <div>
+                                {{ card_logo_img("Rompetrol") }}
+                            </div>
+                            <div class="provider_prices_info">
+                                <h4>Rompetrol</h4>
+                                <hr>
+                                {{ rompetrol_prices[0].last_updated|datetimefilter }}
+                            </div>
                         </div>
-                        <div class="provider_prices_info">
-                            <h4>Rompetrol</h4>
-                            <hr>
-                            {{ rompetrol_prices[0].last_updated|datetimefilter }}
-                        </div>
+                        <small>საწვავის ფასები ახლდება ყოველ 1 საათში ერთხელ და ექვემდებარემა ცვლილებას.</small>
                     </div>
-                    {% for price_obj in rompetrol_prices %}
-                        <div class="price_obj">
-                            <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
-                            <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
-                        </div>
-                    {% endfor %}
+                    <div class="provider_prices_right">
+                        {% for price_obj in rompetrol_prices %}
+                            <div class="price_obj">
+                                <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                                <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="provider_stats">
                     <div class="chart" id="wissol-chart"></div>
@@ -177,22 +186,27 @@
             </div>
             <div class="provider_tab">
                 <div class="provider_prices">
-                    <div class="provider_prices_header">
-                        <div>
-                            {{ card_logo_img("Socar") }}
+                    <div class="provider_prices_left">
+                        <div class="provider_prices_left__header">
+                            <div>
+                                {{ card_logo_img("Socar") }}
+                            </div>
+                            <div class="provider_prices_info">
+                                <h4>Socar</h4>
+                                <hr>
+                                {{ socar_prices[0].last_updated|datetimefilter }}
+                            </div>
                         </div>
-                        <div class="provider_prices_info">
-                            <h4>Socar</h4>
-                            <hr>
-                            {{ socar_prices[0].last_updated|datetimefilter }}
-                        </div>
+                        <small>საწვავის ფასები ახლდება ყოველ 1 საათში ერთხელ და ექვემდებარემა ცვლილებას.</small>
                     </div>
-                    {% for price_obj in socar_prices %}
-                        <div class="price_obj">
-                            <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
-                            <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
-                        </div>
-                    {% endfor %}
+                    <div class="provider_prices_right">
+                        {% for price_obj in socar_prices %}
+                            <div class="price_obj">
+                                <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                                <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="provider_stats">
                     <div class="chart" id="socar-chart"></div>
@@ -200,22 +214,27 @@
             </div>
             <div class="provider_tab">
                 <div class="provider_prices">
-                    <div class="provider_prices_header">
-                        <div>
-                            {{ card_logo_img("Lukoil") }}
+                    <div class="provider_prices_left">
+                        <div class="provider_prices_left__header">
+                            <div>
+                                {{ card_logo_img("Lukoil") }}
+                            </div>
+                            <div class="provider_prices_info">
+                                <h4>Lukoil</h4>
+                                <hr>
+                                {{ lukoil_prices[0].last_updated|datetimefilter }}
+                            </div>
                         </div>
-                        <div class="provider_prices_info">
-                            <h4>Lukoil</h4>
-                            <hr>
-                            {{ lukoil_prices[0].last_updated|datetimefilter }}
-                        </div>
+                        <small>საწვავის ფასები ახლდება ყოველ 1 საათში ერთხელ და ექვემდებარემა ცვლილებას.</small>
                     </div>
-                    {% for price_obj in lukoil_prices %}
-                        <div class="price_obj">
-                            <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
-                            <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
-                        </div>
-                    {% endfor %}
+                    <div class="provider_prices_right">
+                        {% for price_obj in lukoil_prices %}
+                            <div class="price_obj">
+                                <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                                <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="provider_stats">
                     <div class="chart" id="lukoil-chart"></div>
@@ -223,22 +242,27 @@
             </div>
             <div class="provider_tab">
                 <div class="provider_prices">
-                    <div class="provider_prices_header">
-                        <div>
-                            {{ card_logo_img("Portal") }}
+                    <div class="provider_prices_left">
+                        <div class="provider_prices_left__header">
+                            <div>
+                                {{ card_logo_img("Portal") }}
+                            </div>
+                            <div class="provider_prices_info">
+                                <h4>Portal</h4>
+                                <hr>
+                                {{ portal_prices[0].last_updated|datetimefilter }}
+                            </div>
                         </div>
-                        <div class="provider_prices_info">
-                            <h4>Portal</h4>
-                            <hr>
-                            {{ portal_prices[0].last_updated|datetimefilter }}
-                        </div>
+                        <small>საწვავის ფასები ახლდება ყოველ 1 საათში ერთხელ და ექვემდებარემა ცვლილებას.</small>
                     </div>
-                    {% for price_obj in portal_prices %}
-                        <div class="price_obj">
-                            <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
-                            <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
-                        </div>
-                    {% endfor %}
+                    <div class="provider_prices_right">
+                        {% for price_obj in portal_prices %}
+                            <div class="price_obj">
+                                <div><span>{{ '%0.2f'|format(price_obj.price) }} &#8382;</span> {{ price_obj.name }}</div>
+                                <div>{{ change_rate_badge(price_obj.change_rate) }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="provider_stats">
                     <div class="chart" id="portal-chart"></div>
