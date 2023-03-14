@@ -674,10 +674,6 @@ footer img {
         margin-top: 10px;
     }
 
-    .price_obj {
-        font-size: 14px;
-    }
-
     .provider_stats {
         width: 100%;
     }
@@ -737,7 +733,7 @@ footer img {
     }
 
     .header__nav a {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .header__nav a:first-child, .header__nav a:last-child {
