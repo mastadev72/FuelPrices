@@ -75,13 +75,26 @@
     </script>
 </head>
 <body>
-<div class="container">
     <header>
-        <a href="{{ url_for('main.index') }}">
-            <img src="{{ static_url_for('static', filename='img/logo.png') }}" alt="Logo">
-        </a>
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__title">
+                    <a href="{{ url_for('main.index') }}">
+                        <img src="{{ static_url_for('static', filename='img/logo.png') }}" alt="Logo">
+                    </a>
+                    Sawvavi
+                </div>
+
+                <nav class="header__nav">
+                    <a href="{{ url_for('main.index') }}">მთავარი</a>
+                    <a href="{{ url_for('main.about') }}">პროექტის შესახებ</a>
+                    <a href="/api">API</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
+<div class="container">
     <div class="running_cards" id="running_cards_div">
         {% for price_obj in prices %}
             <div class="running_card ">
@@ -93,16 +106,14 @@
                         {{ '%0.2f'|format(price_obj.price) }} &#8382;
                         <span
                                 class="badge"
-                                style="background-color: {% if price_obj.change_rate > 0 %}#ea3943{% elif price_obj.change_rate <= 0 %}#16c784{% endif %}"
+                                style="color: {% if price_obj.change_rate > 0 %}#ea3943{% elif price_obj.change_rate < 0 %}#16c784{% endif %}"
                         >
                                 {% if price_obj.change_rate > 0 %}
                                     <i class="fa-solid fa-arrow-up"></i> {{ '%0.2f'|format(price_obj.change_rate) }}
                                     &#8382;
                                 {% elif price_obj.change_rate < 0 %}
-                                    <i class="fa-solid fa-arrow-down"></i> {{ '%0.2f'|format(price_obj.change_rate) }}
+                                    <i class="fa-solid fa-arrow-down"></i> {{ '%0.2f'|format(price_obj.change_rate | abs) }}
                                     &#8382;
-                                {% else %}
-                                    0.00
                                 {% endif %}
                             </span>
                     </div>
@@ -138,11 +149,9 @@
             <img src="{{ static_url_for('static', filename='img/logo.png') }}" alt="Logo">
         </a>
 
-        <ul>
-            <li><a href="{{ url_for('main.index') }}">მთავარი</a></li>
-            <li><a href="{{ url_for('main.about') }}">პროექტის შესახებ</a></li>
-            <li><a href="/api">API</a></li>
-        </ul>
+        <div>
+            Sawvavi 15 Mar 2023 Version
+        </div>
     </footer>
 </div>
 
