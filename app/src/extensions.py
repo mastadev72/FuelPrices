@@ -6,7 +6,6 @@ from flask_migrate import Migrate
 from flask_static_digest import FlaskStaticDigest
 from flask_limiter import Limiter
 
-
 from src.database import db
 from src.utils.network import get_remote_address
 
