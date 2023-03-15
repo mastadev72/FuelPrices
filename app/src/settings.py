@@ -42,6 +42,10 @@ class BaseConfig(object):
     # API
     JSON_SORT_KEYS = False
 
+    # Rate limit
+    RATELIMIT_STORAGE_URI = env.str("RATELIMIT_STORAGE_URI", default="redis://localhost:6379/1")
+    RATELIMIT_STORAGE_OPTIONS = {"socket_connect_timeout": 30}
+
     # Slack logger
     SLACK_WEBHOOK_KEY = env.str("SLACK_WEBHOOK_KEY")
 
@@ -189,11 +193,14 @@ class ProductionConfig(BaseConfig):
     }
 
     # Cache
-    CACHE_REDIS_HOST = "redis"
+    CACHE_REDIS_HOST = env.str("CACHE_REDIS_HOST", default="localhost")
     CACHE_REDIS_PORT = 6379
-    CACHE_REDIS_DB = 0
-    CACHE_REDIS_URL = "redis://redis:6379/0"
+    CACHE_REDIS_DB = env.int("CACHE_REDIS_DB", default=0)
+    CACHE_REDIS_URL = env.str("CACHE_REDIS_URL", default="redis://localhost:6379/0")
     CACHE_DEFAULT_TIMEOUT = 500
+
+    # Rate limit
+    RATELIMIT_STORAGE_URI = env.str("RATELIMIT_STORAGE_URI", default="redis://localhost:6379/1")
 
 
 settings = BaseConfig()
