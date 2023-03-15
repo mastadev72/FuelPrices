@@ -29,7 +29,7 @@ def register_blueprints(app: Flask) -> None:
     :return: None
     """
     # To check if app contains blueprints we need to be inside the app context
-    from .utils import blueprints
+    from src.utils.blueprints import blueprints
 
     if not blueprints and app.get("CHECK_FOR_BLUEPRINTS") is True:
         message = "The list of blueprints is empty. App won't have any blueprints."
