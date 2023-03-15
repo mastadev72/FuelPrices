@@ -18,11 +18,11 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ self.title() }} — Sawvavi">
     <meta property="og:description" content="Sawvavi - საწვავის ფასების აპლიკაცია.">
-    <meta property="og:image" content="{{ static_url_for('static', filename='img/banner.png') }}">
+    <meta property="og:image" content="{{ static_url_for('static', filename='img/banner.webp') }}">
     <meta property="og:url" content="{{ request.base_url }}">
     <meta property="og:site_name" content="Sawvavi">
 
-    <link rel="icon" type="image/png" href="{{ static_url_for('static', filename='img/logo.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ static_url_for('static', filename='img/logo.webp') }}"/>
 
     <title>
         {% block title %}{% endblock %} — Sawvavi
@@ -80,7 +80,7 @@
             <div class="header__inner">
                 <div class="header__title">
                     <a href="{{ url_for('main.index') }}">
-                        <img src="{{ static_url_for('static', filename='img/logo.png') }}" alt="Logo">
+                        <img src="{{ static_url_for('static', filename='img/logo.webp') }}" alt="Logo">
                     </a>
                     Sawvavi
                 </div>
@@ -88,7 +88,7 @@
                 <nav class="header__nav">
                     <a href="{{ url_for('main.index') }}">მთავარი</a>
                     <a href="{{ url_for('main.about') }}">პროექტის შესახებ</a>
-                    <a href="/api">API</a>
+                    <a href="{{ url_for('api.doc') }}">API</a>
                 </nav>
             </div>
         </div>
@@ -146,7 +146,7 @@
         </div>
 
         <a href="{{ url_for('main.index') }}">
-            <img src="{{ static_url_for('static', filename='img/logo.png') }}" alt="Logo">
+            <img src="{{ static_url_for('static', filename='img/logo.webp') }}" alt="Logo">
         </a>
 
         <div>

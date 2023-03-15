@@ -5,9 +5,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_migrate import Migrate
 from flask_static_digest import FlaskStaticDigest
 from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
 from src.database import db
+from src.utils.network import get_remote_address
 
 migrate = Migrate()
 cache = Cache()
