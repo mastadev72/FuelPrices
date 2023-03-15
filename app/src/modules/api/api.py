@@ -2,12 +2,15 @@ from flask import Blueprint
 from flask_restx import Api
 from flask_marshmallow import Marshmallow
 
+from src.extensions import limiter
+
 from .namespaces.current import api as current_ns
 from .namespaces.best_deals import api as lowest_deals_ns
 from .namespaces.utils import api as utils_ns
 from .namespaces.compare import api as compare_ns
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
+limiter.limit("20/second")(api_blueprint)
 
 api = Api(api_blueprint, title="Fuel Prices API", version='1.0')
 ma = Marshmallow()
