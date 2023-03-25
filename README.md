@@ -71,8 +71,8 @@ monitor, compare fuel prices, and use API to access current prices
     sudo bash ./scripts/linux/start_dev.sh
     ```
 
-7.Go to http://127.0.0.1:5000/
-9.Enjoy 💫
+8. Go to http://127.0.0.1:5000/
+9. Enjoy 💫
 
 ### 👨🏼‍🔬 Contributing
 
