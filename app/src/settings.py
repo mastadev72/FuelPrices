@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = BASE_DIR / "src"
 
 env = Env()
-env.read_env(os.path.join(BASE_DIR, 'envs/.env.dev'))
+env.read_env(os.path.join(BASE_DIR, 'envs/.env.prod'))
 
 
 class BaseConfig(object):
@@ -203,4 +203,4 @@ class ProductionConfig(BaseConfig):
     RATELIMIT_STORAGE_URI = env.str("RATELIMIT_STORAGE_URI", default="redis://localhost:6379/1")
 
 
-settings = BaseConfig()
+settings = ProductionConfig()
